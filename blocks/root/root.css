@@ -2,8 +2,5 @@
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   background-color: black;
   max-width: 1280px;
-}
-
-* {
-  outline: thin solid orange;
+  margin: auto;
 }
