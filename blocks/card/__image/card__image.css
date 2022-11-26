@@ -9,3 +9,9 @@
     height: 83%;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .card__image {
+    max-height: 282px;
+  }
+}

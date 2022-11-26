@@ -12,7 +12,7 @@
 
 /* header---header---header---header---header---header---header---header */
 @import url(../blocks/header/header.css);
-/* не используется */   @import url(../blocks/header/__logo/header__logo.css);
+@import url(../blocks/header/__logo/header__logo.css);
 
 /* profile---profile---profile---profile---profile---profile---profile */
 @import url(../blocks/profile/profile.css);
@@ -36,7 +36,6 @@
     @import url(../blocks/card/__icon/card__icon.css);
 
 /* footer---footer---footer---footer---footer---footer---footer---footer---footer */
-/* не используется */ @import url(../blocks/footer/footer.css);
   @import url(../blocks/footer/__copyright/footer__copyright.css);
 
   * {

@@ -14,6 +14,12 @@
 @media screen and (max-width: 750px) {
   .button__add {
     justify-self: unset;
-    width: 40%;
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .button__add {
+    width: 100%;
   }
 }
