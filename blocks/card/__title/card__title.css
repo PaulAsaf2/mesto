@@ -4,3 +4,9 @@
   width: 246px;
   margin: 25px auto 0 auto;
 }
+
+@media screen and (max-width: 930px) {
+  .card__title {
+    width: 90%;
+  }
+}

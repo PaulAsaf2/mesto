@@ -1,4 +1,11 @@
 .card__image {
   display: block;
   object-fit: cover;
+  width: 100%;
+}
+
+@media screen and (max-width: 930px) {
+  .card__image {
+    height: 83%;
+  }
 }

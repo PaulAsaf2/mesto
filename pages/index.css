@@ -39,5 +39,5 @@
   @import url(../blocks/footer/__copyright/footer__copyright.css);
 
   * {
-  /* outline: thin solid orange; */
+  outline: thin solid orange;
 }
