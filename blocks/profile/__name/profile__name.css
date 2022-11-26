@@ -1,9 +1,13 @@
 .profile__name {
-  grid-area: name;
   margin: 0;
-  padding-top: 22px ;
   font-size: 42px;
   line-height: 48px;
   font-weight: 500;
-  margin-left: 30px;
+  
+}
+
+@media screen and (max-width: 750px) {
+  .profile__name {
+    
+  }
 }

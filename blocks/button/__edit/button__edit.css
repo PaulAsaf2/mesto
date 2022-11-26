@@ -3,8 +3,14 @@
   width: 24px;
   height: 24px;
   background: url(../../../images/Edit\ Button.svg);
-  grid-area: edit;
+  /* grid-area: edit; */
   align-self: end;
   margin-bottom: 10px;
   margin-left: 18px;
   }
+
+@media screen and (max-width: 750px) {
+    .button__edit {
+      margin-left: 10px;
+    }
+  } 

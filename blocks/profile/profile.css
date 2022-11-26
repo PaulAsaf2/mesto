@@ -1,9 +1,22 @@
 .profile {
   color: white;
   display: grid;
-  grid-template-columns: 120px repeat(3, 1fr);
+  grid-template-columns: 120px repeat(2, 1fr);
   grid-template-areas: 
-  "avatar name edit add"
-  "avatar activity . add";
+  "avatar name add"
+  "avatar activity add";
   margin-top: 40px;
+}
+
+@media screen and (max-width: 750px) {
+  .profile {
+    margin-top: 42px;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "avatar"
+      "name"
+      "activity"
+      "add";
+      justify-items: center;
+  }
 }

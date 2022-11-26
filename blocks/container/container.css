@@ -10,3 +10,9 @@
     padding: 0 40px 0 40px;
   }
 }
+
+@media screen and (max-width: 750px) {
+  .container {
+    padding: 0 19px 0 19px;
+  }
+}

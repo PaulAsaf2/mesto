@@ -2,8 +2,18 @@
   width: 150px;
   height: 50px;
   border: 0;
-  background: url(../../../images/add_button.svg);
+  background: url(../../../images/plus_icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
   grid-area: add;
   justify-self: end;
   align-self: center;
+  outline: 2px solid white;
+}
+
+@media screen and (max-width: 750px) {
+  .button__add {
+    justify-self: unset;
+    width: 40%;
+  }
 }
