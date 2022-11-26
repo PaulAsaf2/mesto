@@ -1,0 +1,10 @@
+.profile {
+  color: white;
+  display: grid;
+  grid-template-columns: 120px repeat(3, 1fr);
+  grid-template-areas: 
+  "avatar name edit add"
+  "avatar activity . add";
+  margin-top: 40px;
+  outline: thin solid orange;
+}
