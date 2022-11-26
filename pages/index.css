@@ -35,9 +35,9 @@
     @import url(../blocks/card/__icon/card__icon.css);
 
 /* footer---footer---footer---footer---footer---footer---footer---footer---footer */
-@import url(../blocks/footer/footer.css);
+/* не используется */ @import url(../blocks/footer/footer.css);
   @import url(../blocks/footer/__copyright/footer__copyright.css);
 
   * {
-  outline: thin solid orange;
+  /* outline: thin solid orange; */
 }
