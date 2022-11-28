@@ -1,4 +1,4 @@
-.button__add {
+.profile__add {
   width: 150px;
   height: 50px;
   border: 0;
@@ -12,14 +12,14 @@
 }
 
 @media screen and (max-width: 750px) {
-  .button__add {
+  .profile__add {
     justify-self: unset;
     width: 50%;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .button__add {
+  .profile__add {
     width: 100%;
   }
 }
