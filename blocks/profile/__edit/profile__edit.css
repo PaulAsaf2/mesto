@@ -5,6 +5,7 @@
   background: url(../../../images/Edit\ Button.svg);
   margin-left: 18px;
   cursor: pointer;
+  display: inline-flex;
   }
 
 @media screen and (max-width: 750px) {
