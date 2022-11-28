@@ -8,3 +8,12 @@
   top: -40px;
   right: -40px;
 }
+
+@media screen and (max-width: 600px) {
+  .button__close {
+    right: 0;
+    background: url(../../../images/close_icon_20px.svg);
+    width: 20px;
+    height: 20px;
+  }
+}

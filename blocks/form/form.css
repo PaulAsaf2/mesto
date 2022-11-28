@@ -5,3 +5,10 @@
   width: 358px;
   height: 252px;
 }
+
+@media screen and (max-width: 600px) {
+  .form {
+    width: 238px;
+    height: 272px;
+  }
+}
