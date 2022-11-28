@@ -4,5 +4,7 @@
   background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
   top: 0;
-  display: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s all;
 }
