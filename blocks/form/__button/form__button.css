@@ -5,6 +5,7 @@
   line-height: 21.8px;
   color: white;
   background-color: black;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {

@@ -1,11 +1,37 @@
-let editProfile = document.querySelector('.profile__edit');
+// Вызов элементов ---------------------------------------
 let popup = document.querySelector('.popup');
-let popupClose = document.querySelector('.popup__close');
+let profile = document.querySelector('.profile');
+let form = document.querySelector('.form');
 
-editProfile.addEventListener('click', function() {
-  popup.classList.add('popup__opened');
-});
+// Открытие/закрытие попапа ------------------------------
 
-popupClose.addEventListener('click', function () {
-  popup.classList.remove('popup__opened');
-});
+let editProfile = profile.querySelector('.profile__edit');
+let popupClose = popup.querySelector('.popup__close');
+
+function toggleVisiblePopup() {
+  popup.classList.toggle('popup__opened');
+  nameInput.setAttribute('value', nameProfile.textContent);
+  jobInput.setAttribute('value', jobProfile.textContent);
+}
+
+editProfile.addEventListener('click', toggleVisiblePopup);
+popupClose.addEventListener('click', toggleVisiblePopup);
+
+// Редактирование попапа ----------------------------------
+
+// Данные профиля на странице
+let nameProfile = profile.querySelector('.profile__name');
+let jobProfile = profile.querySelector('.profile__activity');
+// Данные профиля в попапе
+let nameInput = form.querySelector('.form__item_type_name');
+let jobInput = form.querySelector('.form__item_type_activity');
+
+// Обработчик формы
+function handleFormSubmit (evt) {
+  evt.preventDefault();
+  nameProfile.textContent = nameInput.value;
+  jobProfile.textContent = jobInput.value;
+  toggleVisiblePopup();
+}
+
+form.addEventListener('submit', handleFormSubmit); 
