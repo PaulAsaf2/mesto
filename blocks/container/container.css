@@ -3,7 +3,6 @@
   flex-direction: column;
   max-width: 880px;
   margin: auto;
-  background-color: black;
 }
 
 @media screen and (max-width: 930px) {

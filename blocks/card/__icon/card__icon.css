@@ -1,3 +1,8 @@
 .card__icon {
-  
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+
+.card__icon:hover {
+  opacity: 60%;
 }

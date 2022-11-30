@@ -5,9 +5,7 @@
   font-weight: 400;
   border-bottom: 1px solid lightgrey;
   margin-left: 0;
-  padding-top: 5px;
-  padding-left: 0;
-  padding-bottom: 13px;
+  padding: 5px 0 13px 0;
   box-sizing: border-box;
   width: 100%;
 }
