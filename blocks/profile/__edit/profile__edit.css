@@ -2,8 +2,8 @@
   border: 0;
   width: 24px;
   height: 24px;
-  background: url(../../../images/Edit\ Button.svg);
-  margin-left: 18px;
+  background: url(../../../images/edit_button.svg);
+  margin-left: 20px;
   cursor: pointer;
   display: inline-flex;
   transition: 0.4s ease;
@@ -23,6 +23,6 @@
     .profile__edit {
       width: 18px;
       height: 18px;
-      background: url(../../../images/edit_button18px.svg);
+      background-size: 100%;
     }
   } 

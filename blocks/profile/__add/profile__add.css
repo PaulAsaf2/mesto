@@ -1,4 +1,5 @@
 .profile__add {
+  background-size: 150px 50px;
   width: 150px;
   height: 50px;
   border: 0;
@@ -11,6 +12,7 @@
   outline: 2px solid white;
   cursor: pointer;
   transition: 0.4s ease;
+  border-radius: 2px;
 }
 
 .profile__add:hover {
@@ -27,5 +29,6 @@
 @media screen and (max-width: 320px) {
   .profile__add {
     width: 100%;
+    background-size: 5%;
   }
 }

@@ -5,8 +5,8 @@
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   display: none;
+  padding-top: 198px;
 }
