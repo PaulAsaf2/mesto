@@ -9,7 +9,7 @@ let editProfile = profile.querySelector('.profile__edit');
 let popupClose = popup.querySelector('.popup__close');
 
 function toggleVisiblePopup() {
-  popup.classList.toggle('popup__opened');
+  popup.classList.toggle('popup_active');
   nameInput.setAttribute('value', nameProfile.textContent);
   jobInput.setAttribute('value', jobProfile.textContent);
 }

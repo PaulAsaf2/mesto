@@ -2,13 +2,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 358px;
-  height: 252px;
+  width: 100%;
 }
 
 @media screen and (max-width: 600px) {
   .form {
     width: 238px;
-    height: 272px;
   }
 }
