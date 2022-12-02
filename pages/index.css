@@ -48,7 +48,6 @@
   @import url(../blocks/form/__heading/form__heading.css);
   @import url(../blocks/form/__input-container/form__input-container.css);
     @import url(../blocks/form/__item/form__item.css);
-  @import url(../blocks/form/__handler/form__handler.css);
     @import url(../blocks/form/__button/form__button.css);
 
   * {
