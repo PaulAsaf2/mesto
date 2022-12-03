@@ -1,6 +1,12 @@
 .card__icon {
   cursor: pointer;
   transition: 0.4s ease;
+  border: 0;
+  background: url(../../../images/love_icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 29px;
+  height: 26px;
 }
 
 .card__icon:hover {

@@ -17,13 +17,13 @@ let jobInput = form.querySelector('.form__item_type_activity');
 
 // Открытие окна
 function popupActive() {
-  popup.classList.add('popup_active');
+  popup.classList.add('popup_opened');
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
 }
 // Заккрытие окна
 function popupRemove() {
-  popup.classList.remove('popup_active');
+  popup.classList.remove('popup_opened');
 }
 // Обработчик формы
 function handleFormSubmit (evt) {
