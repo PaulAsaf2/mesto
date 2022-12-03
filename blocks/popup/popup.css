@@ -9,9 +9,3 @@
   align-items: center;
   display: none;
 }
-
-@media screen and (max-width: 600px) {
-  .popup {
-    padding-top: 125px;
-  }
-}
