@@ -78,7 +78,7 @@
     </footer>  
   </div>  
 
-  <div class="popup">
+  <div class="popup popup_type_profile">
     <div class="popup__container">
       <button class="popup__close" type="button"></button>
       <h2 class="popup__heading">Редактировать профиль</h2>
@@ -90,6 +90,21 @@
                    type="text" name="activity" placeholder="Вид деятельности">
           </fieldset>
             <input class="form__button" type="submit" value="Сохранить" name="submit">
+        </form>
+    </div>
+  </div>
+  <div class="popup popup_type_card">
+    <div class="popup__container">
+      <button class="popup__close" type="button"></button>
+      <h2 class="popup__heading">Новое место</h2>
+        <form class="form" name="add_card">
+          <fieldset class="form__input-container">
+            <input class="form__item form__item_type_card-title"
+                   type="text" name="name" placeholder="Название">
+            <input class="form__item form__item_type_link"
+                   type="text" name="activity" placeholder="Ссылка на картинку">
+          </fieldset>
+            <input class="form__button" type="submit" value="Создать" name="submit">
         </form>
     </div>
   </div>
