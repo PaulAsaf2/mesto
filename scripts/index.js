@@ -9,30 +9,29 @@ const addCard = profile.querySelector('.profile__add');
 const popup = document.querySelector('.popup');
 const popupClose = document.querySelector('.popup__close');
 
-const form = document.querySelector('.form');
-const nameInput = form.querySelector('.form__item_type_name');
-const jobInput = form.querySelector('.form__item_type_activity');
+const profileForm = document.querySelector('.form');
+const nameInput = profileForm.querySelector('.form__item_type_name');
+const jobInput = profileForm.querySelector('.form__item_type_activity');
 
 const popupEditProfile = document.querySelector('.popup_type_profile');
+
 const popupAddCard = document.querySelector('.popup_type_card');
+const popupAddCardClose = popupAddCard.querySelector('.popup__close');
 
 
-// Функции --------------------------------------
+// Functions -----------------------------------
 
-
-
-
-// Открытие диалогового окна
+// open popup
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 
-// Заккрытие диалогового окна
+// close popup
 function removePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-// Обработчик формы
+// Edit form handler
 function handleFormSubmit (evt) {
   evt.preventDefault();
   nameProfile.textContent = nameInput.value;
@@ -40,31 +39,30 @@ function handleFormSubmit (evt) {
   removePopup(popupEditProfile);
 }
 
-// Слушатели ------------------------------------
+// Listeners ------------------------------------
 
-// Button open edit profile
+// Edit profile -------------------------
+// open
 editProfile.addEventListener('click', function() {
   openPopup(popupEditProfile);
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-
 });
-
-// Button open add card
-addCard.addEventListener('click', function() {
-  openPopup(popupAddCard);
-});
-
-
+// close
 popupClose.addEventListener('click', function() {
   removePopup(popupEditProfile);
 });
 
-popupClose.addEventListener('click', function() {
-  console.log(removePopup(popupAddCard));
+// New card -------------------------------------
+// open
+addCard.addEventListener('click', function() {
+  openPopup(popupAddCard);
+});
+// close
+popupAddCardClose.addEventListener('click', function() {
+  removePopup(popupAddCard);
 });
 
 
 
-
-form.addEventListener('submit', handleFormSubmit);
+profileForm.addEventListener('submit', handleFormSubmit);
