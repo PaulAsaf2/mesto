@@ -25,7 +25,7 @@ const initialCards = [
   }
 ];
 
-// Вызов элементов ------------------------------
+// calling elements ------------------------------
 
 const profile = document.querySelector('.profile');
 const editProfileButton = profile.querySelector('.profile__edit');
@@ -47,13 +47,15 @@ const popupAddCardCloseButton = popupAddCard.querySelector('.popup__close');
 const addCardButton = document.querySelector('.form__button_type_add-card');
 
 const imageContainer = document.querySelector('.images');
+const cardTemplate = document.querySelector('#card-template').content;
 
-
-
-
-
-
-
+// add card content from array
+initialCards.forEach(function(element) {
+  const arrayElement = cardTemplate.cloneNode(true);
+        arrayElement.querySelector('.card__text').textContent = element.name;
+        arrayElement.querySelector('.card__image').src = element.link;
+  imageContainer.append(arrayElement);
+})
 
 // Functions -----------------------------------
 
@@ -67,16 +69,6 @@ function removePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-// add card
-function addCard (title, link) {
-  const cardTemplate = document.querySelector('#card-template').content;
-  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-        cardElement.querySelector('.card__text').textContent = title
-        cardElement.querySelector('.card__image').src = link
-  imageContainer.prepend(cardElement);
-}
-
-// Listeners ------------------------------------
 
 // Edit profile -------------------------
 // open
@@ -106,6 +98,13 @@ popupaddCardButton.addEventListener('click', function() {
 popupAddCardCloseButton.addEventListener('click', function() {
   removePopup(popupAddCard);
 });
+// add card
+function addCard (title, link) {
+  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+        cardElement.querySelector('.card__text').textContent = title
+        cardElement.querySelector('.card__image').src = link
+  imageContainer.prepend(cardElement);
+}
 // handler
 addCardButton.addEventListener('click', function (evt) {
   evt.preventDefault();
@@ -116,3 +115,4 @@ addCardButton.addEventListener('click', function (evt) {
   link.value = '';
   removePopup(popupAddCard);
 })
+
