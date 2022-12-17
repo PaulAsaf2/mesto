@@ -28,7 +28,7 @@
       </section>
 
       <section aria-label="Изображения пользователя" class="images">
-        <article class="card">
+        <!-- <article class="card">
           <img class="card__image" src="./images/maximilian-khrulev-2qJTz_WTTSs-unsplash.png" alt="Стадо лошадей на фоне поселка у реки">
           <div class="card__title">
             <h2 aria-label="Ульяновская область" class="card__text">Ульяновская область</h2>
@@ -69,7 +69,7 @@
             <h2 class="card__text">Зеленоград</h2>
             <button class="card__icon" type="button"></button>
           </div>
-        </article>
+        </article> -->
       </section>
     </main>
 
@@ -104,10 +104,21 @@
             <input class="form__item form__item_type_link"
                    type="text" name="link" placeholder="Ссылка на картинку">
           </fieldset>
-            <input class="form__button" type="submit" value="Создать" name="submit">
+            <input class="form__button form__button_type_add-card" type="submit" value="Создать" name="submit">
         </form>
     </div>
   </div>
+
+  <template id="card-template">
+    <article class="card">
+      <img class="card__image" src="" alt="">
+      <div class="card__title">
+        <h2 class="card__text"></h2>
+        <button class="card__icon" type="button"></button>
+      </div>
+    </article>
+  </template>
+  
   <script src="./scripts/index.js"></script>
 </body>
 </html>
