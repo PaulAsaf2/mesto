@@ -49,28 +49,9 @@ const addCardButton = document.querySelector('.form__button_type_add-card');
 const imageContainer = document.querySelector('.images');
 
 
-// add card
-function addCard (title, link) {
-  const cardTemplate = document.querySelector('#card-template').content;
-  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-        cardElement.querySelector('.card__text').textContent = title
-        cardElement.querySelector('.card__image').src = link
-  imageContainer.prepend(cardElement);
-}
 
-// handler submit btn
-addCardButton.addEventListener('click', function (evt) {
-  evt.preventDefault();
-  const titleCard = document.querySelector('.form__item_type_card-title');
-  const link = document.querySelector('.form__item_type_link');
 
-  addCard(titleCard.value, link.value)
 
-  titleCard.value = '';
-  link.value = '';
-
-  removePopup(popupAddCard);
-})
 
 
 
@@ -84,6 +65,15 @@ function openPopup(popup) {
 // close popup
 function removePopup(popup) {
   popup.classList.remove('popup_opened');
+}
+
+// add card
+function addCard (title, link) {
+  const cardTemplate = document.querySelector('#card-template').content;
+  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+        cardElement.querySelector('.card__text').textContent = title
+        cardElement.querySelector('.card__image').src = link
+  imageContainer.prepend(cardElement);
 }
 
 // Listeners ------------------------------------
@@ -116,3 +106,13 @@ popupaddCardButton.addEventListener('click', function() {
 popupAddCardCloseButton.addEventListener('click', function() {
   removePopup(popupAddCard);
 });
+// handler
+addCardButton.addEventListener('click', function (evt) {
+  evt.preventDefault();
+  const titleCard = document.querySelector('.form__item_type_card-title');
+  const link = document.querySelector('.form__item_type_link');
+  addCard(titleCard.value, link.value)
+  titleCard.value = '';
+  link.value = '';
+  removePopup(popupAddCard);
+})
