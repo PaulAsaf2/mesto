@@ -49,13 +49,35 @@ const addCardButton = document.querySelector('.form__button_type_add-card');
 const imageContainer = document.querySelector('.images');
 const cardTemplate = document.querySelector('#card-template').content;
 
+
+const cardsFromArray = initialCards.forEach(function(element) {
+    const arrayElement = cardTemplate.cloneNode(true);
+          arrayElement.querySelector('.card__text').textContent = element.name;
+          arrayElement.querySelector('.card__image').src = element.link;
+          arrayElement.querySelector('.card__like').addEventListener('click', function(evt) {
+            evt.target.classList.toggle('card__like_active');})
+  
+      imageContainer.append(arrayElement);
+  })
+
+const deleteCardButton = document.querySelector('.card__trash');
+
+deleteCardButton.addEventListener('click', function(evt) {
+  evt.cardElement.remove(arrayElement);
+  })
+
 // add card content from array
-initialCards.forEach(function(element) {
-  const arrayElement = cardTemplate.cloneNode(true);
-        arrayElement.querySelector('.card__text').textContent = element.name;
-        arrayElement.querySelector('.card__image').src = element.link;
-  imageContainer.append(arrayElement);
-})
+
+// initialCards.forEach(function(element) {
+//   const arrayElement = cardTemplate.cloneNode(true);
+//         arrayElement.querySelector('.card__text').textContent = element.name;
+//         arrayElement.querySelector('.card__image').src = element.link;
+//         arrayElement.querySelector('.card__like').addEventListener('click', function(evt) {
+//           evt.target.classList.toggle('card__like_active');})
+
+//     imageContainer.append(arrayElement);
+// })
+
 
 // Functions -----------------------------------
 
@@ -98,12 +120,17 @@ popupaddCardButton.addEventListener('click', function() {
 popupAddCardCloseButton.addEventListener('click', function() {
   removePopup(popupAddCard);
 });
-// add card
+// add
 function addCard (title, link) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
         cardElement.querySelector('.card__text').textContent = title
         cardElement.querySelector('.card__image').src = link
+        cardElement.querySelector('.card__like').addEventListener('click', function(evt) {
+          evt.target.classList.toggle('card__icon_like');
+        })
   imageContainer.prepend(cardElement);
+        cardElement.querySelector('.card__trash').addEventListener('click', () => {
+        cardElement.remove();})
 }
 // handler
 addCardButton.addEventListener('click', function (evt) {
