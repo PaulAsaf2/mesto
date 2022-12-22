@@ -50,6 +50,9 @@ const imageContainer = document.querySelector('.images');
 const cardTemplate = document.querySelector('#card-template').content;
 
 const popupImage = document.querySelector('.popup_type_image');
+const popupImageCloseButton = popupImage.querySelector('.popup__close')
+
+
 
 
 // Functions -----------------------------------
@@ -94,7 +97,6 @@ profileForm.addEventListener('submit', function (evt) {
 
 // image ----------------------------------------
 // open
-
 
 // New card -------------------------------------
 // open
