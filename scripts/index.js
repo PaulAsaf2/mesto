@@ -49,31 +49,18 @@ const addCardButton = document.querySelector('.form__button_type_add-card');
 const imageContainer = document.querySelector('.images');
 const cardTemplate = document.querySelector('#card-template').content;
 
-
-// const cardsFromArray = initialCards.forEach(function(element) {
-//     const arrayElement = cardTemplate.cloneNode(true);
-//           arrayElement.querySelector('.card__text').textContent = element.name;
-//           arrayElement.querySelector('.card__image').src = element.link;
-//           arrayElement.querySelector('.card__like').addEventListener('click', function(evt) {
-//             evt.target.classList.toggle('card__like_active');})
-  
-//       imageContainer.append(arrayElement);
-//   })
-
-// const deleteCardButton = document.querySelector('.card__trash');
-
-// deleteCardButton.addEventListener('click', function(evt) {
-//   evt.cardElement.remove(arrayElement);
-//   })
-
-// addCard(createCard(newCard))
-
-
-
-
+const popupImage = document.querySelector('.popup_type_image');
 
 
 // Functions -----------------------------------
+
+// reverse array
+initialCards.reverse();
+
+// add default card
+initialCards.forEach(function(card) {
+  addCard(card.name, card.link);
+})
 
 // open popup
 function openPopup(popup) {
@@ -104,6 +91,10 @@ profileForm.addEventListener('submit', function (evt) {
   jobProfile.textContent = jobInput.value;
   removePopup(popupEditProfile);
 });
+
+// image ----------------------------------------
+// open
+
 
 // New card -------------------------------------
 // open
@@ -136,12 +127,3 @@ addCardButton.addEventListener('click', function (evt) {
   link.value = '';
   removePopup(popupAddCard);
 })
-
-initialCards.reverse();
-
-// add default card
-initialCards.forEach(function(card) {
-  addCard(card.name, card.link);
-})
-
-console.log(initialCards);
