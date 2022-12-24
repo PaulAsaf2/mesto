@@ -1,36 +1,41 @@
 // calling elements ------------------------------
-
+// profile
 const profile = document.querySelector('.profile');
-const editProfileButton = profile.querySelector('.profile__edit');
 const nameProfile = profile.querySelector('.profile__name');
 const jobProfile = profile.querySelector('.profile__activity');
-const popupaddCardButton = profile.querySelector('.profile__add');
-
-const popup = document.querySelector('.popup');
-const popupEditProfileCloseButton = document.querySelector('.popup__close');
-
+const editProfileButton = profile.querySelector('.profile__edit');
+const popupEditProfile = document.querySelector('.popup_type_profile');
+const popupEditProfileCloseButton = popupEditProfile.querySelector('.popup__close');
+// profile form
 const profileForm = document.querySelector('.form');
 const nameInput = profileForm.querySelector('.form__item_type_name');
 const jobInput = profileForm.querySelector('.form__item_type_activity');
-
-const popupEditProfile = document.querySelector('.popup_type_profile');
-
+// create card
+const popupaddCardButton = profile.querySelector('.profile__add');
 const popupAddCard = document.querySelector('.popup_type_card');
+const titleCard = popupAddCard.querySelector('.form__item_type_card-title');
+const linkCard = popupAddCard.querySelector('.form__item_type_link');
+const addCardButton = popupAddCard.querySelector('.form__button_type_add-card');
 const popupAddCardCloseButton = popupAddCard.querySelector('.popup__close');
-const addCardButton = document.querySelector('.form__button_type_add-card');
-
+// card's container
 const imageContainer = document.querySelector('.images');
 const cardTemplate = document.querySelector('#card-template').content;
-
+// image opened
 const popupImage = document.querySelector('.popup_type_image');
 const popupImageOpened = popupImage.querySelector('.popup__image');
 const popupImageCloseButton = popupImage.querySelector('.popup__close');
 const popupImageCaption = popupImage.querySelector('.popup__caption');
 
+
 // Functions -----------------------------------
 
+// Мы не должны изменять изначальны массив, но reverse изменяет его. 
+// Вместо использования reverse лучше манипулировать порядком добавления 
+// карточек в контейнер при помощи использования append и prepend (в зависимости от ситуации) 
 // reverse array
-initialCards.reverse();
+initialCards.reverse(); // !!!!!!!!!!!!!!!!!!!
+
+
 
 // add default card
 initialCards.forEach(function(card) {
@@ -90,6 +95,18 @@ popupaddCardButton.addEventListener('click', function() {
 popupAddCardCloseButton.addEventListener('click', function() {
   closePopup(popupAddCard);
 });
+
+
+  // Функция должна выполнять только одно действие, а сейчас она выполняет минимум 2:
+  // создает карточку и добавляет карточку в DOM. 
+  // Функционал создания карточки следует вынести в функцию createCard(title, link) ,
+  // она должна просто возвращать карточку.
+  // Функционал добавления карточки в DOM следует вынести в функцию addCard 
+
+// create
+function createCard(title, link) {
+  
+}
 // add
 function addCard (title, link) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
@@ -109,10 +126,8 @@ function addCard (title, link) {
 // handler
 addCardButton.addEventListener('click', function (evt) {
   evt.preventDefault();
-  const titleCard = document.querySelector('.form__item_type_card-title');
-  const link = document.querySelector('.form__item_type_link');
-  addCard(titleCard.value, link.value)
+  addCard(titleCard.value, linkCard.value)
   titleCard.value = '';
-  link.value = '';
+  linkCard.value = '';
   closePopup(popupAddCard);
 })
