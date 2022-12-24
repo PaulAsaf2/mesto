@@ -105,7 +105,7 @@ function createCard (title, link) {
   return cardElement;
 }
 // add default card
-initialCards.forEach(function(card) {
+[...initialCards].reverse().forEach(function(card) {
   addCard(card.name, card.link);
 })
 // handler
