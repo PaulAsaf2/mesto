@@ -104,24 +104,34 @@ popupAddCardCloseButton.addEventListener('click', function() {
   // Функционал добавления карточки в DOM следует вынести в функцию addCard 
 
 // create
-function createCard(title, link) {
-  
-}
+// function createCard(title, link) {
+
+// }
+
+// function addCard () {
+
+// }
+
 // add
 function addCard (title, link) {
+// клонирование содержимого тега template
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardImage = cardElement.querySelector('.card__image')
-        cardElement.querySelector('.card__text').textContent = title;      
-        cardElement.querySelector('.card__image').src = link;
-        cardImage.alt = title;
-        cardElement.querySelector('.card__like').addEventListener('click', function(evt) {
-          evt.target.classList.toggle('card__like_active');})
-        cardElement.querySelector('.card__trash').addEventListener('click', () => {
-        cardElement.remove();});
-        cardImage.addEventListener('click', function() {
-          openImagePopup(title, link);
-        });
-        imageContainer.prepend(cardElement);
+// добавление в карточку название, ссылку и описание
+  cardElement.querySelector('.card__text').textContent = title;      
+  cardElement.querySelector('.card__image').src = link;
+  cardImage.alt = title;
+// слушатель кнопки Нравится
+  cardElement.querySelector('.card__like').addEventListener('click', function(evt) {
+    evt.target.classList.toggle('card__like_active');})
+// слушатель кнопки Удаление
+  cardElement.querySelector('.card__trash').addEventListener('click', () => {
+    cardElement.remove();});
+// слушатель открытия изображения
+  cardImage.addEventListener('click', function() {
+    openImagePopup(title, link);});
+// добавление карточек в начало узла
+  imageContainer.prepend(cardElement);
 }
 // handler
 addCardButton.addEventListener('click', function (evt) {
