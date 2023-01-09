@@ -77,6 +77,7 @@ popupaddCardButton.addEventListener('click', function() {
 // close
 popupAddCardCloseButton.addEventListener('click', function() {
   closePopup(popupAddCard);
+  formAddCard.reset();
 });
 // add
 function addCard (title, link) {
