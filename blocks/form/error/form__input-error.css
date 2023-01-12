@@ -7,3 +7,9 @@
   margin-top: 7px;
   min-height: 30px;
 }
+
+@media screen and (max-width: 600px) {
+  .form__input-error {
+    min-height: 42px;
+  }
+}

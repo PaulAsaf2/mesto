@@ -30,12 +30,43 @@ const popupImageCaption = popupImage.querySelector('.popup__caption');
 // open popup
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape);
 }
 
+// close --------------------------------------
 // close popup
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
 }
+
+// close popup by Escape
+const closeButtons = document.querySelectorAll('.popup__close');
+
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup(popupOpened);
+  }
+}
+
+// all buttons for closing popups
+closeButtons.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+});
+
+// closing popup by clicking outside the button
+const popupList = Array.from(document.querySelectorAll('.popup'));
+  
+popupList.forEach((popupElement) => {
+  popupElement.addEventListener('click', (evt) => {
+    if (evt.target === evt.currentTarget) {
+      closePopup(popupElement);
+    }
+  });
+});
+
 
 // Edit profile --------------------------------
 // open
@@ -43,13 +74,9 @@ editProfileButton.addEventListener('click', function() {
   openPopup(popupEditProfile);
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-
   doValidate();
 });
-// close
-popupEditProfileCloseButton.addEventListener('click', function() {
-  closePopup(popupEditProfile);
-});
+
 // handler
 profileForm.addEventListener('submit', function (evt) {
   evt.preventDefault();
@@ -59,10 +86,6 @@ profileForm.addEventListener('submit', function (evt) {
 });
 
 // image ----------------------------------------
-// close
-popupImageCloseButton.addEventListener('click', function() {
-  closePopup(popupImage)
-})
 // open image popup
 function openImagePopup(title, link) {
   openPopup(popupImage);
@@ -75,16 +98,15 @@ function openImagePopup(title, link) {
 // open
 popupAddCardButton.addEventListener('click', function() {
   openPopup(popupAddCard);
-});
-// close
-popupAddCardCloseButton.addEventListener('click', function() {
-  closePopup(popupAddCard);
   formAddCard.reset();
+  doValidate();
 });
+
 // add
 function addCard (title, link) {
   imageContainer.prepend(createCard(title, link));
 }
+
 // create
 function createCard (title, link) {
  
@@ -107,10 +129,12 @@ function createCard (title, link) {
 
   return cardElement;
 }
+
 // add default card
 [...initialCards].reverse().forEach(function(card) {
   addCard(card.name, card.link);
 })
+
 // handler
   formAddCard.addEventListener('submit', function (evt) {
   evt.preventDefault();
@@ -119,6 +143,7 @@ function createCard (title, link) {
   closePopup(popupAddCard);
 })
 
+// validation of forms
 const doValidate = () => {
   enableValidation({
     formSelector: '.form',
@@ -131,24 +156,3 @@ const doValidate = () => {
 };
 
 doValidate();
-
-function handleEscape(evt) {
-  if (evt.key === 'Escape') {
-    closePopup(document.querySelector('.popup_opened'))
-  }
-}
-
-const popupList = Array.from(document.querySelectorAll('.popup'));
-  
-popupList.forEach((popupElement) => {
-  popupElement.addEventListener('click', (evt) => {
-    if (evt.target === evt.currentTarget) {
-      closePopup(popupElement);
-    }
-  });
-
-});
-
-document.addEventListener('keydown', function(evt) {
-  handleEscape(evt);
-});
