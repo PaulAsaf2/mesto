@@ -7,11 +7,11 @@ const editProfileButton = profile.querySelector('.profile__edit');
 const popupEditProfile = document.querySelector('.popup_type_profile');
 const popupEditProfileCloseButton = popupEditProfile.querySelector('.popup__close');
 // profile form
-const profileForm = document.querySelector('.form');
+const profileForm = popupEditProfile.querySelector('.form');
 const nameInput = profileForm.querySelector('.form__item_type_name');
 const jobInput = profileForm.querySelector('.form__item_type_activity');
 // create card
-const popupaddCardButton = profile.querySelector('.profile__add');
+const popupAddCardButton = profile.querySelector('.profile__add');
 const popupAddCard = document.querySelector('.popup_type_card');
 const formAddCard = popupAddCard.querySelector('.form')
 const titleCard = popupAddCard.querySelector('.form__item_type_card-title');
@@ -73,7 +73,7 @@ function openImagePopup(title, link) {
 
 // card ----------------------------------------------
 // open
-popupaddCardButton.addEventListener('click', function() {
+popupAddCardButton.addEventListener('click', function() {
   openPopup(popupAddCard);
 });
 // close
@@ -112,7 +112,7 @@ function createCard (title, link) {
   addCard(card.name, card.link);
 })
 // handler
-addCardButton.addEventListener('click', function (evt) {
+  formAddCard.addEventListener('submit', function (evt) {
   evt.preventDefault();
   addCard(titleCard.value, linkCard.value)
   formAddCard.reset();
