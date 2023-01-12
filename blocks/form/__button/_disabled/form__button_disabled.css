@@ -4,8 +4,9 @@
   cursor: default;
   border-color: rgba(0, 0, 0, 0.2);
   transition: none;
+  pointer-events: none;
 }
 
-.form__button:hover {
+.form__button_disabled:hover {
   background-color: rgba(0, 0, 0, 0.0);
 }
