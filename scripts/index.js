@@ -27,6 +27,24 @@ const popupImageOpened = popupImage.querySelector('.popup__image');
 const popupImageCloseButton = popupImage.querySelector('.popup__close');
 const popupImageCaption = popupImage.querySelector('.popup__caption');
 
+const validationConfig = {
+  formSelector: '.form',
+  inputSelector: '.form__item',
+  submitButtonSelector: '.form__button',
+  inactiveButtonClass: 'form__button_disabled',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__error_visible'
+};
+
+// Disabling the button when opening popup
+const buttonDisabled = () => {
+  const popupButton = document.querySelectorAll('.form__button');
+  popupButton.forEach((item) => {
+    item.classList.add(validationConfig.inactiveButtonClass);
+    item.disabled = true;
+  })
+};
+
 // open popup
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -74,7 +92,7 @@ editProfileButton.addEventListener('click', function() {
   openPopup(popupEditProfile);
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-  doValidate();
+  buttonDisabled();
 });
 
 // handler
@@ -99,7 +117,7 @@ function openImagePopup(title, link) {
 popupAddCardButton.addEventListener('click', function() {
   openPopup(popupAddCard);
   formAddCard.reset();
-  doValidate();
+  buttonDisabled();
 });
 
 // add
@@ -143,16 +161,5 @@ function createCard (title, link) {
   closePopup(popupAddCard);
 })
 
-// validation of forms
-const doValidate = () => {
-  enableValidation({
-    formSelector: '.form',
-    inputSelector: '.form__item',
-    submitButtonSelector: '.form__button',
-    inactiveButtonClass: 'form__button_disabled',
-    inputErrorClass: 'form__input_type_error',
-    errorClass: 'form__error_visible'
-  });
-};
-
-doValidate();
+// calling form validation
+enableValidation(validationConfig);
