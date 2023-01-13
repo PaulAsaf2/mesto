@@ -26,13 +26,11 @@ const popupImage = document.querySelector('.popup_type_image');
 const popupImageOpened = popupImage.querySelector('.popup__image');
 const popupImageCloseButton = popupImage.querySelector('.popup__close');
 const popupImageCaption = popupImage.querySelector('.popup__caption');
-// submit buttons
+// Calling multiple elements
 const popupButton = document.querySelectorAll('.form__button');
-// close buttons
 const closeButtons = document.querySelectorAll('.popup__close');
-// popups
 const popupList = Array.from(document.querySelectorAll('.popup'));
-
+// Config
 const validationConfig = {
   formSelector: '.form',
   inputSelector: '.form__item',
