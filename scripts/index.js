@@ -26,6 +26,8 @@ const popupImage = document.querySelector('.popup_type_image');
 const popupImageOpened = popupImage.querySelector('.popup__image');
 const popupImageCloseButton = popupImage.querySelector('.popup__close');
 const popupImageCaption = popupImage.querySelector('.popup__caption');
+// submit buttons
+const popupButton = document.querySelectorAll('.form__button');
 
 const validationConfig = {
   formSelector: '.form',
@@ -37,12 +39,11 @@ const validationConfig = {
 };
 
 // Disabling the button when opening popup
-const buttonDisabled = () => {
-  const popupButton = document.querySelectorAll('.form__button');
+const disableButton = () => {
   popupButton.forEach((item) => {
     item.classList.add(validationConfig.inactiveButtonClass);
     item.disabled = true;
-  })
+  });
 };
 
 // open popup
@@ -92,7 +93,7 @@ editProfileButton.addEventListener('click', function() {
   openPopup(popupEditProfile);
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-  buttonDisabled();
+  disableButton();
 });
 
 // handler
@@ -117,7 +118,7 @@ function openImagePopup(title, link) {
 popupAddCardButton.addEventListener('click', function() {
   openPopup(popupAddCard);
   formAddCard.reset();
-  buttonDisabled();
+  disableButton();
 });
 
 // add
