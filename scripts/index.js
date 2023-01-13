@@ -28,6 +28,10 @@ const popupImageCloseButton = popupImage.querySelector('.popup__close');
 const popupImageCaption = popupImage.querySelector('.popup__caption');
 // submit buttons
 const popupButton = document.querySelectorAll('.form__button');
+// close buttons
+const closeButtons = document.querySelectorAll('.popup__close');
+// popups
+const popupList = Array.from(document.querySelectorAll('.popup'));
 
 const validationConfig = {
   formSelector: '.form',
@@ -60,8 +64,6 @@ function closePopup(popup) {
 }
 
 // close popup by Escape
-const closeButtons = document.querySelectorAll('.popup__close');
-
 function closeByEscape(evt) {
   if (evt.key === 'Escape') {
     const popupOpened = document.querySelector('.popup_opened');
@@ -76,8 +78,6 @@ closeButtons.forEach((button) => {
 });
 
 // closing popup by clicking outside the button
-const popupList = Array.from(document.querySelectorAll('.popup'));
-  
 popupList.forEach((popupElement) => {
   popupElement.addEventListener('click', (evt) => {
     if (evt.target === evt.currentTarget) {
@@ -106,7 +106,7 @@ profileForm.addEventListener('submit', function (evt) {
 
 // image ----------------------------------------
 // open image popup
-function openImagePopup(title, link) {
+function openImage(title, link) {
   openPopup(popupImage);
   popupImageCaption.textContent = title;
   popupImageOpened.src = link;
@@ -144,7 +144,7 @@ function createCard (title, link) {
     cardElement.remove();});
   
   cardImage.addEventListener('click', function() {
-    openImagePopup(title, link);});
+    openImage(title, link);});
 
   return cardElement;
 }
