@@ -27,9 +27,16 @@ const popupImageOpened = popupImage.querySelector('.popup__image');
 const popupImageCloseButton = popupImage.querySelector('.popup__close');
 const popupImageCaption = popupImage.querySelector('.popup__caption');
 // Calling multiple elements
-const popupButton = document.querySelectorAll('.form__button');
 const closeButtons = document.querySelectorAll('.popup__close');
 const popupList = Array.from(document.querySelectorAll('.popup'));
+const spanError = document.querySelectorAll('.form__input-error');
+// adjusting the submit button
+const profileInputs = Array.from(popupEditProfile.querySelectorAll('.form__item'));
+const profileButton = popupEditProfile.querySelector('.form__button');
+const cardInputs = Array.from(popupAddCard.querySelectorAll('.form__item'));
+const cardButton = popupAddCard.querySelector('.form__button');
+
+
 // Config
 const validationConfig = {
   formSelector: '.form',
@@ -40,11 +47,9 @@ const validationConfig = {
   errorClass: 'form__error_visible'
 };
 
-// Disabling the button when opening popup
-const disableButton = () => {
-  popupButton.forEach((item) => {
-    item.classList.add(validationConfig.inactiveButtonClass);
-    item.disabled = true;
+function deleteTextError() {
+  spanError.forEach((spanError) => {
+    spanError.textContent = '';
   });
 };
 
@@ -84,14 +89,15 @@ popupList.forEach((popupElement) => {
   });
 });
 
-
 // Edit profile --------------------------------
 // open
 editProfileButton.addEventListener('click', function() {
   openPopup(popupEditProfile);
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-  disableButton();
+  
+  deleteTextError();
+  toggleButtonState(profileInputs, profileButton, validationConfig);
 });
 
 // handler
@@ -116,7 +122,9 @@ function openImage(title, link) {
 popupAddCardButton.addEventListener('click', function() {
   openPopup(popupAddCard);
   formAddCard.reset();
-  disableButton();
+  
+  deleteTextError();
+  toggleButtonState(cardInputs, cardButton, validationConfig);
 });
 
 // add
