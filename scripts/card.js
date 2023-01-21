@@ -1,10 +1,4 @@
-import {initialCards} from './constants.js'
-
-const popupImage = document.querySelector('.popup_type_image');
-const popupImageOpened = popupImage.querySelector('.popup__image');
-const popupImageCaption = popupImage.querySelector('.popup__caption');
-
-// ---------------------------------------------------------------
+import { popupImage, popupImageOpened, popupImageCaption } from './constants.js';
 
 export class Card {
   
@@ -56,16 +50,3 @@ export class Card {
   }
 
 }
-// ---------------------------------------------------------------
-export const createCard = (data) => {
-  data.forEach((item) => {
-    const card = new Card(item, '#card-template');
-    const cardElement = card.generateCard();
-  
-  data === initialCards 
-    ? document.querySelector('.images').append(cardElement) 
-    : document.querySelector('.images').prepend(cardElement);
-  })
-}
-
-createCard(initialCards);

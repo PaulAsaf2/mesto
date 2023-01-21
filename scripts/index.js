@@ -1,21 +1,9 @@
-import { createCard } from "./card.js";
+// import { FormValidator } from './validate.js';
 import { Card } from './card.js';
+import { initialCards, popupAddCardButton, editProfileButton
+  , nameProfile, jobProfile, popupAddCard, formAddCard, titleCard, linkCard, popupEditProfile, profileForm, nameInput, jobInput
+  , closeButtons, popupList, cardValidationForm, profileValidationForm } from './constants.js' ;
 
-const closeButtons = document.querySelectorAll('.popup__close');
-const popupList = Array.from(document.querySelectorAll('.popup'));
-const profile = document.querySelector('.profile');
-const popupAddCardButton = profile.querySelector('.profile__add');
-const popupAddCard = document.querySelector('.popup_type_card');
-export const formAddCard = popupAddCard.querySelector('.form');
-const titleCard = popupAddCard.querySelector('.form__item_type_card-title');
-const linkCard = popupAddCard.querySelector('.form__item_type_link');
-const editProfileButton = profile.querySelector('.profile__edit');
-const nameProfile = profile.querySelector('.profile__name');
-const jobProfile = profile.querySelector('.profile__activity');
-const popupEditProfile = document.querySelector('.popup_type_profile');
-export const profileForm = popupEditProfile.querySelector('.form');
-const nameInput = profileForm.querySelector('.form__item_type_name');
-const jobInput = profileForm.querySelector('.form__item_type_activity');
 
 // any popup ----- any popup ----- any popup ----- any popup ----- any popup ----- any popup
 
@@ -72,6 +60,19 @@ formAddCard.addEventListener('submit', (evt) => {
   closePopup(popupAddCard);
 })
 
+const createCard = (data) => {
+  data.forEach((item) => {
+    const card = new Card(item, '#card-template');
+    const cardElement = card.generateCard();
+  
+  data === initialCards 
+    ? document.querySelector('.images').append(cardElement) 
+    : document.querySelector('.images').prepend(cardElement);
+  })
+}
+
+createCard(initialCards);
+
 // profile ----- profile ----- profile ----- profile ----- profile ----- profile ----- profile
 
 // open
@@ -81,7 +82,7 @@ editProfileButton.addEventListener('click', () => {
   jobInput.value = jobProfile.textContent;
   
   // deleteTextError();
-  // toggleButtonState(profileInputs, profileButton, validationConfig);
+  
 });
 
 // Handler for adding profile data
@@ -92,6 +93,10 @@ profileForm.addEventListener('submit', (evt) => {
   closePopup(popupEditProfile);
 });
 
+
+// validate ----- validate ----- validate ----- validate ----- validate ----- validate ----- validate
+cardValidationForm.enableValidation();
+profileValidationForm.enableValidation();
 
 /*
 
