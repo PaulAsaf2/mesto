@@ -37,45 +37,41 @@
     </footer>  
   </div>  
 
-  <div class="popup popup_type_profile">
-    <div class="popup__container">
-      <button class="popup__close" type="button"></button>
-      <h2 class="popup__heading">Редактировать профиль</h2>
-        
-      <form class="form" name="edit_profile" novalidate>
-          <fieldset class="form__input-container">
-            <input class="form__item form__item_type_name" required minlength="2" maxlength="40"
-                   type="text" name="name" placeholder="Имя Фамилия" id="name-input">
-            <span class="name-input-error form__input-error"></span>
-            <input class="form__item form__item_type_activity" required minlength="2" maxlength="200"
-                   type="text" name="activity" placeholder="Вид деятельности" id="activity-input">
-            <span class="activity-input-error form__input-error"></span>
-          </fieldset>
-            <button class="form__button" type="submit">Сохранить</button>
-        </form>
-
-    </div>
+<div class="popup popup_type_profile">
+  <div class="popup__container">
+    <button class="popup__close" type="button"></button>
+    <h2 class="popup__heading">Редактировать профиль</h2>
+    <form class="form" name="edit_profile" novalidate>
+        <fieldset class="form__input-container">
+          <input class="form__item form__item_type_name" required minlength="2" maxlength="40"
+                 type="text" name="name" placeholder="Имя Фамилия" id="name-input">
+          <span class="name-input-error form__input-error"></span>
+          <input class="form__item form__item_type_activity" required minlength="2" maxlength="200"
+                 type="text" name="activity" placeholder="Вид деятельности" id="activity-input">
+          <span class="activity-input-error form__input-error"></span>
+        </fieldset>
+          <button class="form__button" type="submit">Сохранить</button>
+      </form>
   </div>
+</div>
 
-  <div class="popup popup_type_card">
-    <div class="popup__container">
-      <button class="popup__close" type="button"></button>
-      <h2 class="popup__heading">Новое место</h2>
-
-        <form class="form" name="add_card" novalidate>
-          <fieldset class="form__input-container">
-            <input class="form__item form__item_type_card-title" required minlength="2" maxlength="30"
-                   type="text" name="card-title" placeholder="Название" id="card-title-input">
-            <span class="card-title-input-error form__input-error"></span>
-            <input class="form__item form__item_type_link" required
-                   type="url" name="link" placeholder="Ссылка на картинку" id="card-link-input">
-            <span class="card-link-input-error form__input-error"></span>
-          </fieldset>
-            <button class="form__button form__button_type_add-card" type="submit">Создать</button>
-        </form>
-
-    </div>
+<div class="popup popup_type_card">
+  <div class="popup__container">
+    <button class="popup__close" type="button"></button>
+    <h2 class="popup__heading">Новое место</h2>
+      <form class="form" name="add_card" novalidate>
+        <fieldset class="form__input-container">
+          <input class="form__item form__item_type_card-title" required minlength="2" maxlength="30"
+                 type="text" name="card-title" placeholder="Название" id="card-title-input">
+          <span class="card-title-input-error form__input-error"></span>
+          <input class="form__item form__item_type_link" required
+                 type="url" name="link" placeholder="Ссылка на картинку" id="card-link-input">
+          <span class="card-link-input-error form__input-error"></span>
+        </fieldset>
+          <button class="form__button form__button_type_add-card" type="submit">Создать</button>
+      </form>
   </div>
+</div>
   
   <div class="popup popup_type_image">
     <figure class="popup__image-container">
@@ -85,6 +81,7 @@
     </figure>
   </div>
 
+<!-- card template -->
   <template id="card-template">
     <article class="card">
       <button class="card__trash" type="button"></button>
@@ -95,8 +92,11 @@
       </div>
     </article>
   </template>
-  <script src="./scripts/constants.js"></script>
-  <script src="./scripts/validate.js"></script>
-  <script src="./scripts/index.js"></script>
+
+  <script type="module" src="./scripts/constants.js"></script>
+  <script type="module" src="./scripts/validate.js"></script>
+  <script type="module" src="./scripts/card.js"></script>
+  <script type="module" src="./scripts/index.js"></script>
+  
 </body>
 </html>
