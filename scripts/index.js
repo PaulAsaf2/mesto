@@ -1,9 +1,9 @@
 // import { FormValidator } from './validate.js';
-import { Card } from './card.js';
-import { FormValidator } from './validate.js';
-import { initialCards, popupAddCardButton, editProfileButton
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+import { initialCards, popupAddCardButton, editProfileButton, popupImage, popupImageOpened, popupImageCaption
   , nameProfile, jobProfile, popupAddCard, formAddCard, titleCard, linkCard, popupEditProfile, profileForm, nameInput, jobInput
-  , closeButtons, popupList, spanError, inputList, validationConfig } from './constants.js' ;
+  , closeButtons, popupList, spanError, inputList, validationConfig, imageContainer } from './constants.js' ;
 
 
 // any popup ----- any popup ----- any popup ----- any popup ----- any popup ----- any popup
@@ -55,8 +55,29 @@ function deleteLineError() {
   })
 }
 
-
 // card ----- card ----- card ----- card ----- card ----- card ----- card ----- card ----- card
+
+// adding user's cards to a page
+function addingCardsByUser(cardDataByPopup) { 
+    const cardElement = createCard(cardDataByPopup);
+    imageContainer.prepend(cardElement);
+}
+
+// adding default cards to a page
+function addDefaultCard() {
+  initialCards.forEach((cardData) => {
+   const cardElement = createCard(cardData);
+   imageContainer.append(cardElement);
+  })
+}
+
+// creating a card using a class
+function createCard(cardData) {
+  const card = new Card(cardData, '#card-template', handleOpenImage);
+  return card.generateCard();
+}
+
+addDefaultCard();
 
 // Open the popup for adding a card
 popupAddCardButton.addEventListener('click', () => {
@@ -72,25 +93,24 @@ popupAddCardButton.addEventListener('click', () => {
 // Handler for adding a card
 formAddCard.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  const cardDataByPopup = [{
+
+  const cardDataByPopup = {
     title: titleCard.value,
-    link: linkCard.value }];
-  createCard(cardDataByPopup);
+    link: linkCard.value };
+
+  addingCardsByUser(cardDataByPopup);
+
   closePopup(popupAddCard);
 })
 
-const createCard = (data) => {
-  data.forEach((item) => {
-    const card = new Card(item, '#card-template');
-    const cardElement = card.generateCard();
-  
-  data === initialCards 
-    ? document.querySelector('.images').append(cardElement) 
-    : document.querySelector('.images').prepend(cardElement);
-  })
-}
+// open the card image
+function handleOpenImage(title, link) {
+  popupImageCaption.textContent = title;
+  popupImageOpened.src = link;
+  popupImageOpened.alt = title;
 
-createCard(initialCards);
+  openPopup(popupImage);
+}
 
 // profile ----- profile ----- profile ----- profile ----- profile ----- profile ----- profile
 

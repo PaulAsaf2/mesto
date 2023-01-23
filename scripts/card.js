@@ -1,11 +1,10 @@
-import { popupImage, popupImageOpened, popupImageCaption } from './constants.js';
-
 export class Card {
   
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleOpenImage) {
     this._title = data.title;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._handleOpenImage = handleOpenImage;
   }
 
   _getTemplate() {
@@ -17,36 +16,37 @@ export class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.card__image');
 
     this._element.querySelector('.card__text').textContent = this._title;      
-    this._element.querySelector('.card__image').src = this._link;
-    this._element.querySelector('.card__image').alt = this._title;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._title;
 
     this._setEventListeners();
 
     return this._element;
   }
 
-  _openImage() {
-    popupImageOpened.src = this._link;
-    popupImageCaption.textContent = this._title;
-    popupImageOpened.alt = this._title;
+  _setEventListeners() {
+    this._cardImage.addEventListener('click', () => {
+      this._handleOpenImage(this._title, this._link);
+    })
 
-    popupImage.classList.add('popup_opened');
+    this._trashButton = this._element.querySelector('.card__trash').addEventListener('click', () => {
+      this._removeCard();
+    })
+
+    this._likeButton = this._element.querySelector('.card__like').addEventListener('click', (evt) => {
+      this._toggleLikeButtonState(evt);
+    })
   }
 
-  _setEventListeners() {
-    this._element.querySelector('.card__image').addEventListener('click', () => {
-      this._openImage();
-    })
+  _removeCard() {
+    this._element.remove();
+  }
 
-    this._element.querySelector('.card__trash').addEventListener('click', () => {
-      this._element.remove();
-    })
-
-    this._element.querySelector('.card__like').addEventListener('click', (evt) => {
-      evt.target.classList.toggle('card__like_active');
-    })
+  _toggleLikeButtonState(evt) {
+    evt.target.classList.toggle('card__like_active');
   }
 
 }
