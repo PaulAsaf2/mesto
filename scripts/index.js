@@ -1,9 +1,14 @@
 // import { FormValidator } from './validate.js';
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
-import { initialCards, popupAddCardButton, editProfileButton, popupImage, popupImageOpened, popupImageCaption
-  , nameProfile, jobProfile, popupAddCard, formAddCard, titleCard, linkCard, popupEditProfile, profileForm, nameInput, jobInput
-  , closeButtons, popupList, spanError, inputList, validationConfig, imageContainer } from './constants.js' ;
+import { 
+  initialCards, popupAddCardButton, editProfileButton
+  , popupImage, popupImageOpened, popupImageCaption
+  , nameProfile, jobProfile, popupAddCard
+  , formAddCard, titleCard, linkCard
+  , popupEditProfile, profileForm, nameInput, jobInput
+  , closeButtons, popupList, validationConfig, imageContainer 
+} from './constants.js' ;
 
 
 // any popup ----- any popup ----- any popup ----- any popup ----- any popup ----- any popup
@@ -43,17 +48,6 @@ popupList.forEach((popupElement) => {
   });
 });
 
-function deleteTextError() {
-  spanError.forEach((spanItem) => {
-    spanItem.textContent = '';
-  });
-};
-
-function deleteLineError() {
-  inputList.forEach((inputItem) => {
-    inputItem.classList.remove('form__input_type_error');
-  })
-}
 
 // card ----- card ----- card ----- card ----- card ----- card ----- card ----- card ----- card
 
@@ -84,9 +78,8 @@ popupAddCardButton.addEventListener('click', () => {
   openPopup(popupAddCard);
   formAddCard.reset();
   
-  deleteTextError();
-  deleteLineError();
-
+  cardValidationForm.deleteTextError();
+  cardValidationForm.deleteLineError();
   cardValidationForm.toggleButtonState();
 })
 
@@ -99,7 +92,6 @@ formAddCard.addEventListener('submit', (evt) => {
     link: linkCard.value };
 
   addingCardsByUser(cardDataByPopup);
-
   closePopup(popupAddCard);
 })
 
@@ -117,23 +109,24 @@ function handleOpenImage(title, link) {
 // open
 editProfileButton.addEventListener('click', () => {
   openPopup(popupEditProfile);
+
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
   
-  deleteTextError();
-  deleteLineError();
-
-  profileValidationForm.toggleButtonState();  
+  profileValidationForm.deleteTextError();
+  profileValidationForm.deleteLineError();
+  profileValidationForm.toggleButtonState();
 });
 
 // Handler for adding profile data
 profileForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
+
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
+  
   closePopup(popupEditProfile);
 });
-
 
 // validate ----- validate ----- validate ----- validate ----- validate ----- validate ----- validate
 

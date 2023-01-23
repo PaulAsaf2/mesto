@@ -43,9 +43,7 @@ const nameInput = profileForm.querySelector('.form__item_type_name');
 const jobInput = profileForm.querySelector('.form__item_type_activity');
 const closeButtons = document.querySelectorAll('.popup__close');
 const popupList = Array.from(document.querySelectorAll('.popup'));
-const spanError = document.querySelectorAll('.form__input-error');
 const imageContainer = document.querySelector('.images');
-const inputList = document.querySelectorAll('.form__item');
 
 const validationConfig = {
   formSelector: '.form',
@@ -57,6 +55,11 @@ const validationConfig = {
 };
 
 export { 
-  initialCards, profile, popupAddCardButton, editProfileButton, popupImage, popupImageOpened, popupImageCaption
-  , nameProfile, jobProfile, popupAddCard, formAddCard, titleCard, linkCard, popupEditProfile, profileForm, nameInput, jobInput
-  , closeButtons, popupList, spanError, inputList, validationConfig, imageContainer };
+  initialCards, profile, popupAddCardButton
+  , editProfileButton, popupImage, popupImageOpened
+  , popupImageCaption, nameProfile, jobProfile
+  , popupAddCard, formAddCard, titleCard
+  , linkCard, popupEditProfile, profileForm
+  , nameInput, jobInput, closeButtons
+  , popupList, validationConfig, imageContainer
+};

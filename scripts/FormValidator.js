@@ -5,8 +5,22 @@ export class FormValidator {
     this._form = form;
   }
 
+  deleteTextError() {
+    const errorTextElement = this._form.querySelectorAll('.form__input-error');
+    errorTextElement.forEach((item) => {
+      item.textContent = '';
+    })
+  }
+
+  deleteLineError() {
+    this._inputList.forEach((item) => {
+      item.classList.remove(this._config.inputErrorClass);
+    })
+  }
+       
   _showInputError(inputElement, errorMessage) {
     const errorElement = this._form.querySelector(`.${inputElement.id}-error`);
+   
     inputElement.classList.add(this._config.inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._config.errorClass);
@@ -14,6 +28,7 @@ export class FormValidator {
   
   _hideInputError(inputElement) {
     const errorElement = this._form.querySelector(`.${inputElement.id}-error`);
+    
     inputElement.classList.remove(this._config.inputErrorClass);
     errorElement.classList.remove(this._config.errorClass);
     errorElement.textContent = '';
