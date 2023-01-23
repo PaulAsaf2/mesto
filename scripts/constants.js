@@ -1,5 +1,3 @@
-import { FormValidator } from './validate.js';
-
 const initialCards = [
   {
     title: 'Москва',
@@ -58,12 +56,9 @@ const validationConfig = {
   errorClass: 'form__error_visible'
 };
 
-const cardValidationForm = new FormValidator(validationConfig, formAddCard);
-const profileValidationForm = new FormValidator(validationConfig, profileForm);
-
 export { popupImage, popupImageOpened, popupImageCaption };
 
 export { 
   initialCards, profile, popupAddCardButton, editProfileButton
   , nameProfile, jobProfile, popupAddCard, formAddCard, titleCard, linkCard, popupEditProfile, profileForm, nameInput, jobInput
-  , closeButtons, popupList, cardValidationForm, profileValidationForm, spanError, inputList };
+  , closeButtons, popupList, spanError, inputList, validationConfig };
