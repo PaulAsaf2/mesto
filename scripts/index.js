@@ -2,7 +2,7 @@
 import { Card } from './card.js';
 import { initialCards, popupAddCardButton, editProfileButton
   , nameProfile, jobProfile, popupAddCard, formAddCard, titleCard, linkCard, popupEditProfile, profileForm, nameInput, jobInput
-  , closeButtons, popupList, cardValidationForm, profileValidationForm } from './constants.js' ;
+  , closeButtons, popupList, cardValidationForm, profileValidationForm, spanError, inputList } from './constants.js' ;
 
 
 // any popup ----- any popup ----- any popup ----- any popup ----- any popup ----- any popup
@@ -42,12 +42,30 @@ popupList.forEach((popupElement) => {
   });
 });
 
+function deleteTextError() {
+  spanError.forEach((spanItem) => {
+    spanItem.textContent = '';
+  });
+};
+
+function deleteLineError() {
+  inputList.forEach((inputItem) => {
+    inputItem.classList.remove('form__input_type_error');
+  })
+}
+
+
 // card ----- card ----- card ----- card ----- card ----- card ----- card ----- card ----- card
 
 // Open the popup for adding a card
 popupAddCardButton.addEventListener('click', () => {
   openPopup(popupAddCard);
   formAddCard.reset();
+  
+  deleteTextError();
+  deleteLineError();
+
+  cardValidationForm.toggleButtonState();
 })
 
 // Handler for adding a card
@@ -81,8 +99,10 @@ editProfileButton.addEventListener('click', () => {
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
   
-  // deleteTextError();
-  
+  deleteTextError();
+  deleteLineError();
+
+  profileValidationForm.toggleButtonState();  
 });
 
 // Handler for adding profile data
@@ -99,10 +119,6 @@ cardValidationForm.enableValidation();
 profileValidationForm.enableValidation();
 
 /*
-
-
-
-
 // calling elements ------------------------------
 // profile
 const profile = document.querySelector('.profile');

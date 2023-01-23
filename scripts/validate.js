@@ -1,4 +1,5 @@
 export class FormValidator {
+
   constructor(config, form) {
     this._config = config;
     this._form = form;
@@ -24,8 +25,7 @@ export class FormValidator {
     })
   }
 
-
-  _toggleButtonState() {
+  toggleButtonState() {
     if(this._hasInvalidInput()) {
       this._buttonElement.classList.add(this._config.inactiveButtonClass);
       this._buttonElement.disabled = true;
@@ -37,7 +37,7 @@ export class FormValidator {
 
   _checkInputValidity(inputElement) {
     !inputElement.validity.valid
-      ? this._showInputError(inputElement, inputElement.validationMessage, this._config)
+      ? this._showInputError(inputElement, inputElement.validationMessage)
       : this._hideInputError(inputElement);
   }
 
@@ -48,7 +48,7 @@ export class FormValidator {
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState();
+        this.toggleButtonState();
       })
     })
 

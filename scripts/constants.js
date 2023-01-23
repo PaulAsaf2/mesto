@@ -27,24 +27,27 @@ const initialCards = [
   }
 ];
 
-const popupImage = document.querySelector('.popup_type_image'),
-      popupImageOpened = popupImage.querySelector('.popup__image'),
-      popupImageCaption = popupImage.querySelector('.popup__caption'),
-    profile = document.querySelector('.profile'),
-      popupAddCardButton = profile.querySelector('.profile__add'),
-      editProfileButton = profile.querySelector('.profile__edit'),
-      nameProfile = profile.querySelector('.profile__name'),
-      jobProfile = profile.querySelector('.profile__activity'),
-    popupAddCard = document.querySelector('.popup_type_card'),
-      formAddCard = popupAddCard.querySelector('.form'),
-      titleCard = popupAddCard.querySelector('.form__item_type_card-title'),
-      linkCard = popupAddCard.querySelector('.form__item_type_link'),
-    popupEditProfile = document.querySelector('.popup_type_profile'),
-      profileForm = popupEditProfile.querySelector('.form'),
-      nameInput = profileForm.querySelector('.form__item_type_name'),
-      jobInput = profileForm.querySelector('.form__item_type_activity'),
-    closeButtons = document.querySelectorAll('.popup__close'),
-    popupList = Array.from(document.querySelectorAll('.popup'));
+const popupImage = document.querySelector('.popup_type_image');
+const popupImageOpened = popupImage.querySelector('.popup__image');
+const popupImageCaption = popupImage.querySelector('.popup__caption');
+const profile = document.querySelector('.profile');
+const popupAddCardButton = profile.querySelector('.profile__add');
+const editProfileButton = profile.querySelector('.profile__edit');
+const nameProfile = profile.querySelector('.profile__name');
+const jobProfile = profile.querySelector('.profile__activity');
+const popupAddCard = document.querySelector('.popup_type_card');
+const formAddCard = popupAddCard.querySelector('.form');
+const titleCard = popupAddCard.querySelector('.form__item_type_card-title');
+const linkCard = popupAddCard.querySelector('.form__item_type_link');
+const popupEditProfile = document.querySelector('.popup_type_profile');
+const profileForm = popupEditProfile.querySelector('.form');
+const nameInput = profileForm.querySelector('.form__item_type_name');
+const jobInput = profileForm.querySelector('.form__item_type_activity');
+const closeButtons = document.querySelectorAll('.popup__close');
+const popupList = Array.from(document.querySelectorAll('.popup'));
+const spanError = document.querySelectorAll('.form__input-error');
+
+const inputList = document.querySelectorAll('.form__item');
 
 const validationConfig = {
   formSelector: '.form',
@@ -55,14 +58,12 @@ const validationConfig = {
   errorClass: 'form__error_visible'
 };
 
-const cardValidationForm = new FormValidator(validationConfig, formAddCard),
-      profileValidationForm = new FormValidator(validationConfig, profileForm);
-
-
+const cardValidationForm = new FormValidator(validationConfig, formAddCard);
+const profileValidationForm = new FormValidator(validationConfig, profileForm);
 
 export { popupImage, popupImageOpened, popupImageCaption };
 
 export { 
   initialCards, profile, popupAddCardButton, editProfileButton
   , nameProfile, jobProfile, popupAddCard, formAddCard, titleCard, linkCard, popupEditProfile, profileForm, nameInput, jobInput
-  , closeButtons, popupList, cardValidationForm, profileValidationForm };
+  , closeButtons, popupList, cardValidationForm, profileValidationForm, spanError, inputList };
