@@ -45,6 +45,11 @@ const closeButtons = document.querySelectorAll('.popup__close');
 const popupList = Array.from(document.querySelectorAll('.popup'));
 const imageContainer = document.querySelector('.images');
 
+const cardDataByPopup = {
+  title: titleCard.value,
+  link: linkCard.value
+};
+
 const validationConfig = {
   formSelector: '.form',
   inputSelector: '.form__item',
@@ -55,11 +60,13 @@ const validationConfig = {
 };
 
 export { 
-  initialCards, profile, popupAddCardButton
-  , editProfileButton, popupImage, popupImageOpened
-  , popupImageCaption, nameProfile, jobProfile
-  , popupAddCard, formAddCard, titleCard
-  , linkCard, popupEditProfile, profileForm
-  , nameInput, jobInput, closeButtons
-  , popupList, validationConfig, imageContainer
+  initialCards, profile, popupAddCardButton, 
+  editProfileButton, popupImage, popupImageOpened, 
+  popupImageCaption, nameProfile, jobProfile, 
+  popupAddCard, formAddCard, titleCard, 
+  linkCard, popupEditProfile, profileForm, 
+  nameInput, jobInput, closeButtons, 
+  popupList, validationConfig, imageContainer,
+  cardDataByPopup
+  
 };
