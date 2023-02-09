@@ -1,5 +1,4 @@
 export default class Card {
-  
   constructor(data, templateSelector, handleCardClick) {
     this._title = data.title;
     this._link = data.link;
@@ -52,5 +51,4 @@ export default class Card {
   _toggleLikeButtonState() {
     this._likeButton.classList.toggle('card__like_active');
   }
-
 }
