@@ -5,6 +5,7 @@ import Popup from '../scripts/components/Popup.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
+import './index.css';
 import { 
   initialCards, popupAddCardButton, editProfileButton, 
   popupImage, popupImageOpened, popupImageCaption, 
