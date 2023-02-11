@@ -1,32 +1,31 @@
 import Card from '../scripts/components/Card.js';
 import FormValidator from '../scripts/components/FormValidator.js';
 import Section from '../scripts/components/Section.js';
-import Popup from '../scripts/components/Popup.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import './index.css';
 import { 
   initialCards, popupAddCardButton, editProfileButton, 
-  popupImage, popupImageOpened, popupImageCaption, 
-  popupAddCard, formAddCard, popupEditProfile, 
+  popupImageOpened, popupImageCaption, 
+  formAddCard, nameInput, jobInput,
   profileForm, validationConfig, imageContainer,
-  userData
+  userData, popupSelector, 
 } from '../scripts/utils/constants.js' ;
-// --------------------------------------------------
-const userInfo = new UserInfo(userData);
 
-const profile = new Popup(popupEditProfile);
-const card = new Popup(popupAddCard);
+const userInfo = new UserInfo(userData);
 
 const profileValidationForm = new FormValidator(validationConfig, profileForm);
 const cardValidationForm = new FormValidator(validationConfig, formAddCard);
+
 // --------------------------------------------------
 const openImage = new PopupWithImage({
   popupImageCaption, popupImageOpened
   }, 
-  popupImage
+  popupSelector.popupImage
 )
+
+openImage.setEventListeners()
 
 const handleCardClick = (title, link) => {
   openImage.openPopup(title, link)
@@ -44,27 +43,21 @@ const rendererCard = new Section({
 )
 // --------------------------------------------------
 popupAddCardButton.addEventListener('click', () => {
-  
-  cardValidationForm.deleteTextError();
-  cardValidationForm.deleteLineError();
-  cardValidationForm.toggleButtonState();
-  
-  card.openPopup();
+  cardValidationForm.deleteErrorElements()
+  newCard.openPopup();
 })
 
 editProfileButton.addEventListener('click', () => {
+  const { name, activity } = userInfo.getUserInfo()
+  nameInput.value = name;
+  jobInput.value = activity;
 
-  userInfo.getUserInfo()
-
-  profileValidationForm.deleteTextError();
-  profileValidationForm.deleteLineError();
-  profileValidationForm.toggleButtonState();
-  
-  profile.openPopup();
+  profileValidationForm.deleteErrorElements()
+  profileInfo.openPopup();
 })
 // --------------------------------------------------
 const newCard = new PopupWithForm({
-  selector: popupAddCard,
+  selector: popupSelector.popupCard,
   handleFormSubmit: (formData) => {
     const userCard = new Card(formData, '#card-template', handleCardClick);
     const cardElement = userCard.generateCard();
@@ -73,13 +66,14 @@ const newCard = new PopupWithForm({
 });
 
 const profileInfo = new PopupWithForm({
-  selector: popupEditProfile,
+  selector: popupSelector.popupProfile,
   handleFormSubmit: (formData) => {
     userInfo.setUserInfo(formData);
   }
 })
 // --------------------------------------------------
 rendererCard.rendererItems()
+
 newCard.setEventListeners()
 profileInfo.setEventListeners()
 

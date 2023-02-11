@@ -6,7 +6,7 @@ export default class FormValidator {
   }
 
   deleteTextError() {
-    const errorTextElement = this._form.querySelectorAll('.form__input-error');
+    const errorTextElement = this._form.querySelectorAll(this._config.errorText);
     errorTextElement.forEach((item) => {
       item.textContent = '';
     })
@@ -15,6 +15,14 @@ export default class FormValidator {
   deleteLineError() {
     this._inputList.forEach((item) => {
       item.classList.remove(this._config.inputErrorClass);
+    })
+  }
+
+  deleteErrorElements() {
+    this._inputList.forEach((input) => {
+      this.deleteTextError();
+      this.deleteLineError()
+      this.toggleButtonState()
     })
   }
        

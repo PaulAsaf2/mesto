@@ -5,11 +5,10 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-    const { elements } = document.forms.edit_profile;
-    const { name, activity } = elements;
-
-    name.value = this._name.textContent
-    activity.value = this._activity.textContent
+    return {
+      name: this._name.textContent,
+      activity: this._activity.textContent
+    }
   }
 
   setUserInfo(formData) {

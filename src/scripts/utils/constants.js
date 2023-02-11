@@ -26,6 +26,8 @@ const initialCards = [
 ];
 
 const popupImage = document.querySelector('.popup_type_image');
+const popupAddCard = document.querySelector('.popup_type_card');
+const popupEditProfile = document.querySelector('.popup_type_profile');
 const popupImageOpened = popupImage.querySelector('.popup__image');
 const popupImageCaption = popupImage.querySelector('.popup__caption');
 const profile = document.querySelector('.profile');
@@ -33,11 +35,11 @@ const popupAddCardButton = profile.querySelector('.profile__add');
 const editProfileButton = profile.querySelector('.profile__edit');
 const nameProfile = profile.querySelector('.profile__name');
 const jobProfile = profile.querySelector('.profile__activity');
-const popupAddCard = document.querySelector('.popup_type_card');
+
 const formAddCard = popupAddCard.querySelector('.form');
 const titleCard = popupAddCard.querySelector('.form__item_type_card-title');
 const linkCard = popupAddCard.querySelector('.form__item_type_link');
-const popupEditProfile = document.querySelector('.popup_type_profile');
+
 const profileForm = popupEditProfile.querySelector('.form');
 const nameInput = profileForm.querySelector('.form__item_type_name');
 const jobInput = profileForm.querySelector('.form__item_type_activity');
@@ -51,7 +53,8 @@ const validationConfig = {
   submitButtonSelector: '.form__button',
   inactiveButtonClass: 'form__button_disabled',
   inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__error_visible'
+  errorClass: 'form__error_visible',
+  errorText: '.form__input-error'
 };
 
 const userData = {
@@ -59,13 +62,18 @@ const userData = {
   activity: jobProfile
 }
 
+const popupSelector = {
+  popupImage: '.popup_type_image',
+  popupCard: '.popup_type_card',
+  popupProfile: '.popup_type_profile'
+}
+
 export { 
   initialCards, profile, popupAddCardButton, 
-  editProfileButton, popupImage, popupImageOpened, 
-  popupImageCaption, nameProfile, jobProfile, 
-  popupAddCard, formAddCard, titleCard, 
-  linkCard, popupEditProfile, profileForm, 
+  editProfileButton, popupImageOpened, 
+  popupImageCaption, nameProfile, jobProfile, formAddCard, 
+  titleCard, linkCard, profileForm, 
   nameInput, jobInput, closeButtons, 
   popupList, validationConfig, imageContainer,
-  userData
+  userData, popupSelector
 };
