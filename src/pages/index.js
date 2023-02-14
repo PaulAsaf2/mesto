@@ -7,16 +7,15 @@ import UserInfo from '../scripts/components/UserInfo.js';
 import './index.css';
 import { 
   initialCards, popupAddCardButton, editProfileButton, 
-  popupImageOpened, popupImageCaption, 
-  formAddCard, nameInput, jobInput,
-  profileForm, validationConfig, imageContainer,
-  userData, popupSelector, 
+  popupImageOpened, popupImageCaption, cardForm,
+  profileForm, validationConfig, cardContainer,
+  userData, popupSelector
 } from '../scripts/utils/constants.js' ;
 
 const userInfo = new UserInfo(userData);
 
 const profileValidationForm = new FormValidator(validationConfig, profileForm);
-const cardValidationForm = new FormValidator(validationConfig, formAddCard);
+const cardValidationForm = new FormValidator(validationConfig, cardForm);
 
 // --------------------------------------------------
 const openImage = new PopupWithImage({
@@ -37,7 +36,7 @@ const rendererCard = new Section({
     rendererCard.addDefaultItem(cardElement);
     }
   },
-  imageContainer
+  cardContainer
 )
 // --------------------------------------------------
 popupAddCardButton.addEventListener('click', () => {
@@ -46,10 +45,7 @@ popupAddCardButton.addEventListener('click', () => {
 })
 
 editProfileButton.addEventListener('click', () => {
-  const { name, activity } = userInfo.getUserInfo()
-  nameInput.value = name;
-  jobInput.value = activity;
-
+  profileInfo.setInputValues(userInfo.getUserInfo())
   profileValidationForm.deleteErrorElements()
   profileInfo.openPopup();
 })

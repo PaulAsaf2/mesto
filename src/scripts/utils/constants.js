@@ -25,27 +25,20 @@ const initialCards = [
   }
 ];
 
-const popupImage = document.querySelector('.popup_type_image');
-const popupAddCard = document.querySelector('.popup_type_card');
-const popupEditProfile = document.querySelector('.popup_type_profile');
-const popupImageOpened = popupImage.querySelector('.popup__image');
-const popupImageCaption = popupImage.querySelector('.popup__caption');
 const profile = document.querySelector('.profile');
+
 const popupAddCardButton = profile.querySelector('.profile__add');
 const editProfileButton = profile.querySelector('.profile__edit');
+
 const nameProfile = profile.querySelector('.profile__name');
 const jobProfile = profile.querySelector('.profile__activity');
 
-const formAddCard = popupAddCard.querySelector('.form');
-const titleCard = popupAddCard.querySelector('.form__item_type_card-title');
-const linkCard = popupAddCard.querySelector('.form__item_type_link');
+const cardContainer = document.querySelector('.images');
+const popupImageOpened = document.querySelector('.popup__image');
+const popupImageCaption = document.querySelector('.popup__caption');
 
-const profileForm = popupEditProfile.querySelector('.form');
-const nameInput = profileForm.querySelector('.form__item_type_name');
-const jobInput = profileForm.querySelector('.form__item_type_activity');
-const closeButtons = document.querySelectorAll('.popup__close');
-const popupList = Array.from(document.querySelectorAll('.popup'));
-const imageContainer = document.querySelector('.images');
+const profileForm = document.forms.edit_profile
+const cardForm = document.forms.add_card
 
 const validationConfig = {
   formSelector: '.form',
@@ -70,10 +63,7 @@ const popupSelector = {
 
 export { 
   initialCards, profile, popupAddCardButton, 
-  editProfileButton, popupImageOpened, 
-  popupImageCaption, nameProfile, jobProfile, formAddCard, 
-  titleCard, linkCard, profileForm, 
-  nameInput, jobInput, closeButtons, 
-  popupList, validationConfig, imageContainer,
+  editProfileButton, popupImageOpened, popupImageCaption,
+  cardForm, profileForm, validationConfig, cardContainer,
   userData, popupSelector
 };
