@@ -25,8 +25,6 @@ const openImage = new PopupWithImage({
   popupSelector.popupImage
 )
 
-openImage.setEventListeners()
-
 const handleCardClick = (title, link) => {
   openImage.openPopup(title, link)
 }
@@ -74,6 +72,7 @@ const profileInfo = new PopupWithForm({
 // --------------------------------------------------
 rendererCard.rendererItems()
 
+openImage.setEventListeners()
 newCard.setEventListeners()
 profileInfo.setEventListeners()
 
