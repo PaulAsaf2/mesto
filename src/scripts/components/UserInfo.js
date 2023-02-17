@@ -1,19 +1,20 @@
 export default class UserInfo {
-  constructor({name, activity}) {
+  constructor({name, about}) {
     this._name = name;
-    this._activity = activity;
+    this._about = about;
   }
 
   getUserInfo() {
     return {
       name: this._name.textContent,
-      activity: this._activity.textContent
+      about: this._about.textContent
     }
   }
 
-  setUserInfo(formData) {
-    const { name, activity } = formData
-    this._name.textContent = name;
-    this._activity.textContent = activity;
-  }
+  // setUserInfo(formData) {
+  //   console.log( formData );
+  //   const { name, about } = formData
+  //   this._name.textContent = name;
+  //   this._about.textContent = about;
+  // }
 }

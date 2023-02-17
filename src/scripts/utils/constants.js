@@ -52,13 +52,14 @@ const validationConfig = {
 
 const userData = {
   name: nameProfile,
-  activity: jobProfile
+  about: jobProfile
 }
 
 const popupSelector = {
   popupImage: '.popup_type_image',
   popupCard: '.popup_type_card',
-  popupProfile: '.popup_type_profile'
+  popupCardDelete: '.popup_type_delete-card',
+  popupProfile: '.popup_type_profile',
 }
 
 export { 
