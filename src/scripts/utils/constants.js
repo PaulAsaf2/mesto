@@ -22,23 +22,27 @@ const initialCards = [
   {
     title: 'Тегеран',
     link: 'https://images.unsplash.com/photo-1613881348993-bc547b53daba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-  }
+  },
 ];
 
 const profile = document.querySelector('.profile');
 
 const popupAddCardButton = profile.querySelector('.profile__add');
 const editProfileButton = profile.querySelector('.profile__edit');
+const editAvatarButton = profile.querySelector('.profile__avatar_edit');
 
 const nameProfile = profile.querySelector('.profile__name');
 const jobProfile = profile.querySelector('.profile__activity');
+const avatarProfile = profile.querySelector('.profile__avatar');
 
 const cardContainer = document.querySelector('.images');
 const popupImageOpened = document.querySelector('.popup__image');
 const popupImageCaption = document.querySelector('.popup__caption');
 
-const profileForm = document.forms.edit_profile
-const cardForm = document.forms.add_card
+const profileForm = document.forms.edit_profile;
+const cardForm = document.forms.add_card;
+const avatarForm = document.forms.edit_avatar;
+
 
 const validationConfig = {
   formSelector: '.form',
@@ -47,12 +51,13 @@ const validationConfig = {
   inactiveButtonClass: 'form__button_disabled',
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__error_visible',
-  errorText: '.form__input-error'
+  errorText: '.form__input-error',
 };
 
 const userData = {
   name: nameProfile,
-  about: jobProfile
+  about: jobProfile,
+  avatar: avatarProfile,
 }
 
 const popupSelector = {
@@ -60,11 +65,13 @@ const popupSelector = {
   popupCard: '.popup_type_card',
   popupCardDelete: '.popup_type_delete-card',
   popupProfile: '.popup_type_profile',
+  popupAvatar: '.popup_type_avatar',
 }
 
 export { 
   initialCards, profile, popupAddCardButton, 
   editProfileButton, popupImageOpened, popupImageCaption,
   cardForm, profileForm, validationConfig, cardContainer,
-  userData, popupSelector
+  userData, popupSelector, editAvatarButton,
+  avatarForm,
 };

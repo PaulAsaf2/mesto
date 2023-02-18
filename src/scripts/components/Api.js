@@ -1,46 +1,41 @@
 export default class Api {
-  constructor({name, about}) {
-    this._name = name;
-    this._activity = about;
+  constructor({baseUrl, headers}) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
   }
 
-  getInitialProfileData() {
-    fetch('https://mesto.nomoreparties.co/v1/cohort-60/users/me', {
-      headers: {
-        authorization: 'b9ad9483-6c42-4e9a-8a8f-d7555df6de20'
-      }
+  getProfileData() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers
     })
-    .then(res => res.json())
-    .then((data) => {
-      this._name.textContent = data.name;
-      this._activity.textContent = data.about;
+    .then((res) => {
+      if (res.ok) { return res.json() }
     })
-    
   }
 
-  changeProfileData(data) {
-    fetch('https://mesto.nomoreparties.co/v1/cohort-60/users/me', {
+  setProfileData(data) {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: {
-        authorization: 'b9ad9483-6c42-4e9a-8a8f-d7555df6de20',
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify(data)
     })
   }
 
+  changeAvatar(link) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify(link)
+    })
+  }
+  
   getInitialCards() {
-    // ...
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers
+    })
+    .then((res) => {
+      if (res.ok) { return res.json() }
+    })
   }
 
 }
-
-// fetch('https://mesto.nomoreparties.co/v1/cohort-60/users/me', {
-//   headers: {
-//     authorization: 'b9ad9483-6c42-4e9a-8a8f-d7555df6de20'
-//   }
-// })
-// .then(res => res.json())
-// .then((data) => {
-//   console.log( data );
-// })

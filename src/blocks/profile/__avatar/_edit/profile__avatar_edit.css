@@ -1,0 +1,12 @@
+.profile__avatar_edit {
+  opacity: 0;
+}
+
+.profile__avatar_edit:hover {
+  opacity: .8; 
+  cursor: pointer;
+  background-image: url(../../../../images/pencil_iqon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: black;
+ }

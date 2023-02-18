@@ -9,26 +9,71 @@ import {
   initialCards, popupAddCardButton, editProfileButton, 
   popupImageOpened, popupImageCaption, cardForm,
   profileForm, validationConfig, cardContainer,
-  userData, 
-  popupSelector
+  userData, popupSelector, editAvatarButton,
+  avatarForm,
 } from '../scripts/utils/constants.js' ;
 import Api from '../scripts/components/Api.js';
 import PopupWithConfirmation from '../scripts/components/PopupWithConfirmation.js';
 
-const api = new Api(userData)
-
-api.getInitialProfileData();
-api.changeProfileData()
-
-
-
-
-// экземпляр обработки инф-ии профиля
-const userInfo = new UserInfo(userData);
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-60',
+  headers: {
+    authorization: 'b9ad9483-6c42-4e9a-8a8f-d7555df6de20',
+    'Content-Type': 'application/json'
+  }
+})
 
 // Экземпляры валидации форм
 const profileValidationForm = new FormValidator(validationConfig, profileForm);
 const cardValidationForm = new FormValidator(validationConfig, cardForm);
+const avatarValidationForm = new FormValidator(validationConfig, avatarForm);
+
+// профиль ----- профиль ----- профиль ----- профиль ----- профиль
+
+const userInfo = new UserInfo(userData);
+
+api.getProfileData()
+  .then((profileData) => {
+    userInfo.setUserInfo(profileData);
+    userInfo.setAvatar(profileData);
+  })
+
+const profileInfo = new PopupWithForm({
+  selector: popupSelector.popupProfile,
+  handleFormSubmit: (formData) => {
+    api.setProfileData(formData);
+  }
+})
+
+editProfileButton.addEventListener('click', () => {
+  profileInfo.setInputValues(userInfo.getUserInfo())
+  profileValidationForm.deleteErrorElements()
+  profileInfo.openPopup();
+})
+
+
+const avatarInfo = new PopupWithForm({
+  selector: popupSelector.popupAvatar,
+  handleFormSubmit: (formData) => {
+    api.changeAvatar(formData);
+  }
+})
+
+editAvatarButton.addEventListener('click', () => {
+  avatarInfo.openPopup()
+  avatarValidationForm.deleteErrorElements()
+})
+
+
+avatarInfo.setEventListeners()
+profileInfo.setEventListeners()
+
+// карточки ----- карточки ----- карточки ----- карточки ----- карточки
+
+console.log(api.getInitialCards());
+
+
+
 
 // Экземпляр изображения в мод. окне
 const openImage = new PopupWithImage({
@@ -59,11 +104,11 @@ popupAddCardButton.addEventListener('click', () => {
   newCard.openPopup();
 })
 
-editProfileButton.addEventListener('click', () => {
-  profileInfo.setInputValues(userInfo.getUserInfo())
-  profileValidationForm.deleteErrorElements()
-  profileInfo.openPopup();
-})
+// editProfileButton.addEventListener('click', () => {
+//   profileInfo.setInputValues(userInfo.getUserInfo())
+//   profileValidationForm.deleteErrorElements()
+//   profileInfo.openPopup();
+// })
 
 // обработчики модальных окон
 const newCard = new PopupWithForm({
@@ -75,13 +120,12 @@ const newCard = new PopupWithForm({
   }
 });
 
-const profileInfo = new PopupWithForm({
-  selector: popupSelector.popupProfile,
-  handleFormSubmit: (formData) => {
-    // userInfo.setUserInfo(formData);
-    api.changeProfileData(formData)
-  }
-})
+// const profileInfo = new PopupWithForm({
+//   selector: popupSelector.popupProfile,
+//   handleFormSubmit: (formData) => {
+//     userInfo.setUserInfo(formData);
+//   }
+// })
 
 
 
@@ -91,7 +135,8 @@ rendererCard.rendererItems()
 
 openImage.setEventListeners()
 newCard.setEventListeners()
-profileInfo.setEventListeners()
+// profileInfo.setEventListeners()
 
 profileValidationForm.enableValidation();
 cardValidationForm.enableValidation();
+avatarValidationForm.enableValidation();
