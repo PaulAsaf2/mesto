@@ -35,9 +35,12 @@ const userInfo = new UserInfo(userData);
 
 api.getProfileData()
   .then((profileData) => {
+    console.log( profileData );
     userInfo.setUserInfo(profileData);
     userInfo.setAvatar(profileData);
   })
+
+
 
 const profileInfo = new PopupWithForm({
   selector: popupSelector.popupProfile,
