@@ -5,7 +5,8 @@
 .header{border-bottom:1px solid #545454}
 .header__logo{height:33px;padding-bottom:39px;padding-top:45px;width:142px}@media screen and (max-width:750px){.header__logo{height:24px;padding-bottom:28px;padding-left:8px;padding-top:28px;width:103px}}
 .profile{box-sizing:border-box;color:#fff;display:grid;grid-template-areas:"avatar name add" "avatar activity add";grid-template-columns:120px repeat(2,1fr);margin-top:40px}@media screen and (max-width:750px){.profile{grid-template-areas:"avatar" "name" "activity" "add";grid-template-columns:1fr;justify-items:center;margin-top:42px}}
-.profile__avatar{border-radius:50%;grid-area:avatar;height:120px;-o-object-fit:cover;object-fit:cover;width:120px}
+.profile__avatar{background-position:50%;border-radius:50%;grid-area:avatar;height:120px;-o-object-fit:cover;object-fit:cover;width:120px}
+.profile__avatar_edit{opacity:0}.profile__avatar_edit:hover{background-color:#000;background-image:url(a086f758840ae814ecde.svg);background-position:50%;background-repeat:no-repeat;cursor:pointer;opacity:.8}
 .profile__container{align-items:baseline;display:flex;grid-area:name;margin-left:30px;padding-top:22px}@media screen and (max-width:750px){.profile__container{padding-top:26px}}
 .profile__name{font-size:42px;font-weight:500;line-height:48px;margin:0;max-width:292px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:600px){.profile__name{font-size:27px;line-height:32.7px}}@media screen and (max-width:410px){.profile__name{max-width:189px}}
 .profile__edit{background:url(af236f6cf67005f1d7aa.svg);border:0;cursor:pointer;display:inline-flex;height:24px;margin-left:20px;transition:.4s ease;width:24px}.profile__edit:hover{opacity:60%}@media screen and (max-width:750px){.profile__edit{margin-left:10px}}@media screen and (max-width:320px){.profile__edit{background-size:100%;height:18px;width:18px}}
@@ -18,6 +19,7 @@
 .card__title{align-items:center;display:flex;justify-content:space-between;margin:25px auto 0;width:246px}@media screen and (max-width:930px){.card__title{width:88%}}
 .card__text{font-size:24px;font-weight:900;line-height:29px;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .card__like{background:url(1ad06e85f169668a1f36.svg);background-position:50%;background-repeat:no-repeat;border:0;cursor:pointer;height:26px;transition:.4s ease;width:29px}.card__like:hover{opacity:50%}
+.card__like-count{font-size:13px;margin:0;text-align:center}
 .card__like_active{background-image:url(35948469632d0421d697.svg)}
 .footer__copyright{color:#545454;font-size:18px;font-weight:400;line-height:21.8px;margin:0;padding-bottom:60px;padding-top:66px}@media screen and (max-width:600px){.footer__copyright{padding-bottom:36px;padding-top:48px}}@media screen and (max-width:320px){.footer__copyright{font-size:14px;line-height:17px}}
 .popup{align-items:center;background-color:rgba(0,0,0,.5);display:flex;height:100%;justify-content:center;left:0;opacity:0;position:fixed;top:0;transition:opacity .4s ease,visibility .2s ease;visibility:hidden;width:100%}
