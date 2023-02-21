@@ -4,7 +4,6 @@
   border-radius: 50%;
   grid-area: avatar;
   object-fit: cover;
-  /* background: url(https://3.downloader.disk.yandex.ru/preview/8a82cd0558e3d576453c4d005c1bbcc33011b93eeca10712e689e883dbd913e6/inf/V8z0Y6JksnGykFKYj52hFndDBt6BC_zldOCJ3aqCr5ZXq3vjnwEl0-xZCEJt3qLsY09b0Nv9kjzU4A4xG8kALg%3D%3D?uid=774528204&filename=2023-02-18%2018-56-49%20%D0%B8%D0%B2%D0%B0%D0%BD%20%D0%B3%D1%80%D0%BE%D0%B7%D0%BD%D1%8B%D0%B9%20-%20Google%20Search%20-%20Google%20Chrome.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=774528204&tknv=v2&size=1263x881); */
   background-position: center; 
 }
 

@@ -19,6 +19,9 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify(data)
     })
+    .then((res) => {
+      if (res.ok) { return res.json() }
+    })
   }
 
   changeAvatar(link) {
@@ -27,11 +30,25 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify(link)
     })
+    .then((res) => {
+      if (res.ok) { return res.json() }
+    })
   }
   
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
+    })
+    .then((res) => {
+      if (res.ok) { return res.json() }
+    })
+  }
+
+  createCard(data) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify(data)
     })
     .then((res) => {
       if (res.ok) { return res.json() }
