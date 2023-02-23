@@ -11,7 +11,7 @@ import {
   popupImageOpened, popupImageCaption, cardForm,
   profileForm, validationConfig, cardContainer,
   userData, popupSelector, editAvatarButton,
-  avatarForm,
+  avatarForm, popupDeleteCardButton
 } from '../scripts/utils/constants.js' ;
 import Api from '../scripts/components/Api.js';
 import PopupWithConfirmation from '../scripts/components/PopupWithConfirmation.js';
@@ -40,8 +40,6 @@ api.getProfileData()
     userInfo.setAvatar(profileData);
   })
 
-
-
 const profileInfo = new PopupWithForm({
   selector: popupSelector.popupProfile,
   handleFormSubmit: (formData) => {
@@ -54,7 +52,6 @@ editProfileButton.addEventListener('click', () => {
   profileValidationForm.deleteErrorElements()
   profileInfo.openPopup();
 })
-
 
 const avatarInfo = new PopupWithForm({
   selector: popupSelector.popupAvatar,
@@ -76,58 +73,73 @@ profileInfo.setEventListeners()
 
 console.log(api.getInitialCards());
 
-
+// отображение карточек
+const rendererCard = new Section({ renderer: (cardData) => {
+    const card = new Card(cardData, '#card-template', handleCardClick, openPopupDeleteCard);
+    const cardElement = card.generateCard();
+    rendererCard.addDefaultItem(cardElement);
+    }},
+  cardContainer
+)
 
 api.getInitialCards()
   .then((initialCards) => {
+    rendererCard.rendererItems(initialCards)
+  })
 
-    const rendererCard = new Section({
-      data: initialCards,
-      renderer: (cardData) => {
-        const card = new Card(cardData, '#card-template', handleCardClick);
-        const cardElement = card.generateCard();
-        rendererCard.addDefaultItem(cardElement);
-        }
-      },
-      cardContainer
-    )
+// создание новой карточки
+  const newCard = new PopupWithForm({
+    selector: popupSelector.popupCard,
+    handleFormSubmit: (formData) => {
+      api.createCard(formData)
+    }
+  });
+  
+  popupAddCardButton.addEventListener('click', () => {
+    cardValidationForm.deleteErrorElements()
+    newCard.openPopup();
+  })
+  
+  newCard.setEventListeners()
+// -----------------------------------------------------
+// api.putLike('63f702524950210b6714554d')
+// api.deleteLike('63f702524950210b6714554d')
 
-    rendererCard.rendererItems()
-}) // конец api.getInitialCards()
 
+
+
+// удаление карточки 
+const confirmationPopup = new PopupWithConfirmation({
+  popupDelete: popupDeleteCardButton,
+  handleFormSubmit: (id) => { api.deleteCard(id) }
+  },
+  popupSelector.popupCardDelete, 
+)
+
+const openPopupDeleteCard = (id) => {
+  confirmationPopup.getId(id)
+  confirmationPopup.openPopup()
+  
+}
+
+confirmationPopup.setEventListeners()
+
+// открытие изображения
 const openImage = new PopupWithImage({
   popupImageCaption, popupImageOpened
   }, 
   popupSelector.popupImage
 )
 
-
 const handleCardClick = (title, link) => {
   openImage.openPopup(title, link)
 }
 
-popupAddCardButton.addEventListener('click', () => {
-  cardValidationForm.deleteErrorElements()
-  newCard.openPopup();
-})
-
-
-const newCard = new PopupWithForm({
-  selector: popupSelector.popupCard,
-  handleFormSubmit: (formData) => {
-    api.createCard(formData)
-  }
-});
-
 openImage.setEventListeners()
-newCard.setEventListeners()
 
 
-// const obj = {
-//   name: 'Card name',
-//   link: 'https://4.downloader.disk.yandex.ru/preview/938f7a1b4585dae0389121a0303ab08bfcc00b36091f7d2a30a82120b7e15139/inf/u4ysaXKBfJBu7GEcA5zsP3bG3qm642CaWSGQkxuSHmMguHLCw0dlkEJUTfrO-cF98JjX7684dN153AJFxJEMFw%3D%3D?uid=774528204&filename=2023-02-18%2017-28-37%20Free%20PSD%20%20%20Free%20PSD%203d%20illustration%20of%20person%20with%20long%20hair%20-%20Google%20Chrome.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=774528204&tknv=v2&size=1263x881'
-// }
-// api.createCard(obj)
+
+
   
 
 // Экземпляр изображения в мод. окне

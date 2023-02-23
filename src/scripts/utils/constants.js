@@ -30,6 +30,7 @@ const profile = document.querySelector('.profile');
 const popupAddCardButton = profile.querySelector('.profile__add');
 const editProfileButton = profile.querySelector('.profile__edit');
 const editAvatarButton = profile.querySelector('.profile__avatar_edit');
+const popupDeleteCardButton = document.querySelector('.form__button_type_delete-card');
 
 const nameProfile = profile.querySelector('.profile__name');
 const jobProfile = profile.querySelector('.profile__activity');
@@ -74,5 +75,5 @@ export {
   editProfileButton, popupImageOpened, popupImageCaption,
   cardForm, profileForm, validationConfig, cardContainer,
   userData, popupSelector, editAvatarButton,
-  avatarForm,
+  avatarForm, popupDeleteCardButton
 };

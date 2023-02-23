@@ -1,12 +1,12 @@
   export default class Section {
-  constructor({data, renderer}, selector) {
-    this._initialArray = data;
+  constructor({/*data, */renderer}, selector) {
+    // this._initialArray = data;
     this._renderer = renderer;
     this._container = selector;
   }
 
-  rendererItems() {
-    this._initialArray.forEach(item => this._renderer(item));
+  rendererItems(initialArray) {
+    initialArray.forEach(item => this._renderer(item));
   }
 
   addDefaultItem(cardElement) {
