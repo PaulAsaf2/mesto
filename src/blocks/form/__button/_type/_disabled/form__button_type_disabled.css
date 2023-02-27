@@ -1,4 +1,4 @@
-.form__button_disabled {
+.form__button_type_disabled {
   background-color: white;
   color: rgba(0, 0, 0, 0.2);
   cursor: default;
@@ -7,6 +7,6 @@
   pointer-events: none;
 }
 
-.form__button_disabled:hover {
+.form__button_disabled_type:hover {
   background-color: rgba(0, 0, 0, 0.0);
 }
