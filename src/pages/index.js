@@ -6,7 +6,6 @@ import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import './index.css';
 import { 
-  // initialCards, 
   popupAddCardButton, editProfileButton, 
   popupImageOpened, popupImageCaption, cardForm,
   profileForm, validationConfig, cardContainer,
@@ -24,58 +23,70 @@ const api = new Api({
   }
 })
 
+// валидация ----- валидация ----- валидация ----- валидация
+
 // Экземпляры валидации форм
 const profileValidationForm = new FormValidator(validationConfig, profileForm);
 const cardValidationForm = new FormValidator(validationConfig, cardForm);
 const avatarValidationForm = new FormValidator(validationConfig, avatarForm);
 
+// активация валидации форм
+profileValidationForm.enableValidation();
+cardValidationForm.enableValidation();
+avatarValidationForm.enableValidation();
+
 // профиль ----- профиль ----- профиль ----- профиль ----- профиль
 
+// помещаю данные профиля
 const userInfo = new UserInfo(userData);
 
+// получаю с сервера данные профиля
 api.getProfileData()
   .then((profileData) => {
-    console.log( profileData );
     userInfo.setUserInfo(profileData);
     userInfo.setAvatar(profileData);
   })
 
+// данные профиля отправляю на сервер
 const profileInfo = new PopupWithForm({
   selector: popupSelector.popupProfile,
   handleFormSubmit: (formData) => {
-    api.setProfileData(formData);
+    api.setProfileData(formData)
+      .finally(() => profileInfo.renderLoading(false));
   }
 })
 
+// открытие попапа профиля
 editProfileButton.addEventListener('click', () => {
   profileInfo.setInputValues(userInfo.getUserInfo())
   profileValidationForm.deleteErrorElements()
   profileInfo.openPopup();
 })
 
+// отправляю данные аватарки на сервер
 const avatarInfo = new PopupWithForm({
   selector: popupSelector.popupAvatar,
   handleFormSubmit: (formData) => {
-    api.changeAvatar(formData);
+    api.changeAvatar(formData)
+      .finally(() => avatarInfo.renderLoading(false));
   }
 })
 
+// открытие попапа аватара
 editAvatarButton.addEventListener('click', () => {
   avatarInfo.openPopup()
   avatarValidationForm.deleteErrorElements()
 })
 
-
+// активация слушаетелей
 avatarInfo.setEventListeners()
 profileInfo.setEventListeners()
 
 // карточки ----- карточки ----- карточки ----- карточки ----- карточки
 
-console.log(api.getInitialCards());
-
 // отображение карточек
 const rendererCard = new Section({ renderer: (cardData) => {
-    const card = new Card(cardData, '#card-template', handleCardClick, openPopupDeleteCard);
+    const card = new Card(cardData, '#card-template', handleCardClick, openPopupDeleteCard, toggleLike);
     const cardElement = card.generateCard();
     rendererCard.addDefaultItem(cardElement);
     }},
@@ -88,25 +99,29 @@ api.getInitialCards()
   })
 
 // создание новой карточки
-  const newCard = new PopupWithForm({
-    selector: popupSelector.popupCard,
-    handleFormSubmit: (formData) => {
-      api.createCard(formData)
-    }
-  });
+const newCard = new PopupWithForm({
+  selector: popupSelector.popupCard,
+  handleFormSubmit: (formData) => {
+    api.createCard(formData)
+      .finally(() => newCard.renderLoading(false))
+  }
+});
   
-  popupAddCardButton.addEventListener('click', () => {
-    cardValidationForm.deleteErrorElements()
-    newCard.openPopup();
-  })
+popupAddCardButton.addEventListener('click', () => {
+  cardValidationForm.deleteErrorElements()
+  newCard.openPopup();
+})
   
-  newCard.setEventListeners()
-// -----------------------------------------------------
-// api.putLike('63f702524950210b6714554d')
-// api.deleteLike('63f702524950210b6714554d')
+newCard.setEventListeners()
 
-
-
+// переключение лайка
+const toggleLike = (cardId, checkLike) => {
+  if (!checkLike) {
+    api.putLike(cardId)
+  } else {
+    api.deleteLike(cardId)
+  }
+}
 
 // удаление карточки 
 const confirmationPopup = new PopupWithConfirmation({
@@ -137,73 +152,3 @@ const handleCardClick = (title, link) => {
 
 openImage.setEventListeners()
 
-
-
-
-  
-
-// Экземпляр изображения в мод. окне
-// const openImage = new PopupWithImage({
-//   popupImageCaption, popupImageOpened
-//   }, 
-//   popupSelector.popupImage
-// )
-// ф. передающая инф-ю изображения
-// const handleCardClick = (title, link) => {
-//   openImage.openPopup(title, link)
-// }
-
-// // Отрисовка карточек по умолчанию
-// const rendererCard = new Section({
-//   data: initialCards,
-//   renderer: (cardData) => {
-//     const card = new Card(cardData, '#card-template', handleCardClick);
-//     const cardElement = card.generateCard();
-//     rendererCard.addDefaultItem(cardElement);
-//     }
-//   },
-//   cardContainer
-// )
-
-// слушатели открытия мод. окон
-// popupAddCardButton.addEventListener('click', () => {
-//   cardValidationForm.deleteErrorElements()
-//   newCard.openPopup();
-// })
-
-// editProfileButton.addEventListener('click', () => {
-//   profileInfo.setInputValues(userInfo.getUserInfo())
-//   profileValidationForm.deleteErrorElements()
-//   profileInfo.openPopup();
-// })
-
-// обработчики модальных окон
-// const newCard = new PopupWithForm({
-//   selector: popupSelector.popupCard,
-//   handleFormSubmit: (formData) => {
-//     const userCard = new Card(formData, '#card-template', handleCardClick);
-//     const cardElement = userCard.generateCard();
-//     rendererCard.addUserItem(cardElement);
-//   }
-// });
-
-// const profileInfo = new PopupWithForm({
-//   selector: popupSelector.popupProfile,
-//   handleFormSubmit: (formData) => {
-//     userInfo.setUserInfo(formData);
-//   }
-// })
-
-
-
-
-// вызовы методов
-// rendererCard.rendererItems()
-
-// openImage.setEventListeners()
-// newCard.setEventListeners()
-// profileInfo.setEventListeners()
-
-profileValidationForm.enableValidation();
-cardValidationForm.enableValidation();
-avatarValidationForm.enableValidation();
