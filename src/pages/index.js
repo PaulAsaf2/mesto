@@ -46,12 +46,14 @@ api.getProfileData()
     userInfo.setUserInfo(profileData);
     userInfo.setAvatar(profileData);
   })
+  .catch(err => console.log(err))
 
 // данные профиля отправляю на сервер
 const profileInfo = new PopupWithForm({
   selector: popupSelector.popupProfile,
   handleFormSubmit: (formData) => {
     api.setProfileData(formData)
+      .catch(err => console.log(err))
       .finally(() => profileInfo.renderLoading(false));
   }
 })
@@ -63,11 +65,17 @@ editProfileButton.addEventListener('click', () => {
   profileInfo.openPopup();
 })
 
+// активация слушаетеля
+profileInfo.setEventListeners()
+
+// аватар ----- аватар ----- аватар ----- аватар ----- аватар ----- аватар
+
 // отправляю данные аватарки на сервер
 const avatarInfo = new PopupWithForm({
   selector: popupSelector.popupAvatar,
   handleFormSubmit: (formData) => {
     api.changeAvatar(formData)
+      .catch(err => console.log(err))
       .finally(() => avatarInfo.renderLoading(false));
   }
 })
@@ -78,9 +86,8 @@ editAvatarButton.addEventListener('click', () => {
   avatarValidationForm.deleteErrorElements()
 })
 
-// активация слушаетелей
+// активация слушаетеля
 avatarInfo.setEventListeners()
-profileInfo.setEventListeners()
 
 // карточки ----- карточки ----- карточки ----- карточки ----- карточки
 
@@ -93,33 +100,40 @@ const rendererCard = new Section({ renderer: (cardData) => {
   cardContainer
 )
 
+// получение массива карточек
 api.getInitialCards()
   .then((initialCards) => {
     rendererCard.rendererItems(initialCards)
   })
+  .catch(err => console.log(err))
 
 // создание новой карточки
 const newCard = new PopupWithForm({
   selector: popupSelector.popupCard,
   handleFormSubmit: (formData) => {
     api.createCard(formData)
+      .catch(err => console.log(err))
       .finally(() => newCard.renderLoading(false))
   }
 });
-  
+
+// открытие попапа
 popupAddCardButton.addEventListener('click', () => {
   cardValidationForm.deleteErrorElements()
   newCard.openPopup();
 })
-  
+
+// активация слушаетеля
 newCard.setEventListeners()
 
 // переключение лайка
 const toggleLike = (cardId, checkLike) => {
   if (!checkLike) {
     api.putLike(cardId)
+      .catch(err => console.log(err))
   } else {
     api.deleteLike(cardId)
+      .catch(err => console.log(err))
   }
 }
 
@@ -131,13 +145,16 @@ const confirmationPopup = new PopupWithConfirmation({
   popupSelector.popupCardDelete, 
 )
 
+// открытие попапа
 const openPopupDeleteCard = (id) => {
   confirmationPopup.getId(id)
   confirmationPopup.openPopup()
   
 }
 
+// активация слушаетеля
 confirmationPopup.setEventListeners()
+
 
 // открытие изображения
 const openImage = new PopupWithImage({
