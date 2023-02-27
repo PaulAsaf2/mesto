@@ -3,7 +3,7 @@
 }
 
 .profile__avatar_edit:hover {
-  opacity: .8; 
+  opacity: .8;
   cursor: pointer;
   background-image: url(../../../../images/pencil_iqon.svg);
   background-repeat: no-repeat;
