@@ -3,7 +3,7 @@ const profile = document.querySelector('.profile');
 const popupAddCardButton = profile.querySelector('.profile__add');
 const editProfileButton = profile.querySelector('.profile__edit');
 const editAvatarButton = profile.querySelector('.profile__avatar_edit');
-const popupDeleteCardButton = document.querySelector('.form__button_type_delete');
+const popupDeleteCardButton = document.querySelector('.popup__button_type_delete');
 
 const nameProfile = profile.querySelector('.profile__name');
 const jobProfile = profile.querySelector('.profile__activity');
