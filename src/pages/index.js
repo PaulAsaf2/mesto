@@ -155,7 +155,6 @@ const openPopupDeleteCard = (id) => {
 // активация слушаетеля
 confirmationPopup.setEventListeners()
 
-
 // открытие изображения
 const openImage = new PopupWithImage({
   popupImageCaption, popupImageOpened
