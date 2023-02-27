@@ -63,8 +63,8 @@
     @import url(../blocks/form/__button/form__button.css);
     @import url(../blocks/form/__loading/form__loading.css);
     @import url(../blocks/form/__loading/_type/form__loading_visible.css);
-    @import url(../blocks/form/__button/_disabled/form__button_type_disabled.css);
-    @import url(../blocks/form/__button/_hidden/form__button_type_hidden.css);
+    @import url(../blocks/form/__button/_type/_disabled/form__button_type_disabled.css);
+    @import url(../blocks/form/__button/_type/_hidden/form__button_type_hidden.css);
     @import url(../blocks/form/error/form__input-error.css);
     @import url(../blocks/form/error/form__input_type_error.css);
     @import url(../blocks/form/error/form__error_visible.css);
