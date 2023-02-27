@@ -29,6 +29,7 @@
 .popup__heading{font-size:24px;font-weight:900;line-height:29px;margin:0}@media screen and (max-width:600px){.popup__heading{font-size:18px;line-height:22px}}
 .popup__heading_type_delete{padding-bottom:38px}
 .popup__close{background:url(039f1f5203f653b4bacd.svg);background-position:50%;border:0;cursor:pointer;height:32px;position:absolute;right:-40px;top:-40px;transition:.4s ease;width:32px}.popup__close:hover{opacity:60%}@media screen and (max-width:600px){.popup__close{height:20px;right:0;top:-38px;width:20px}}
+.popup__button{background-color:#000;color:#fff;cursor:pointer;font-size:18px;height:50px;line-height:22px;transition:.4s ease;width:100%}.popup__button:hover{background-color:rgba(0,0,0,.8)}@media screen and (max-width:600px){.popup__button{font-size:14px;line-height:17px}}
 .popup_type_image{background-color:rgba(0,0,0,.9)}
 .popup__image-container{margin:0;position:relative}
 .popup__image{display:block;max-height:75vh;max-width:75vw;-o-object-fit:contain;object-fit:contain}
@@ -39,8 +40,8 @@
 .form__button{background-color:#000;color:#fff;cursor:pointer;font-size:18px;height:50px;line-height:22px;transition:.4s ease;width:100%}.form__button:hover{background-color:rgba(0,0,0,.8)}@media screen and (max-width:600px){.form__button{font-size:14px;line-height:17px}}
 .form__loading{background-color:#000;color:#fff;cursor:pointer;display:none;font-size:18px;height:50px;line-height:22px;transition:.4s ease;width:100%}.form__loading:hover{background-color:rgba(0,0,0,.8)}@media screen and (max-width:600px){.form__loading{font-size:14px;line-height:17px}}
 .form__loading_visible{display:block}
-.form__button_disabled{background-color:#fff;border-color:rgba(0,0,0,.2);color:rgba(0,0,0,.2);cursor:default;pointer-events:none;transition:none}.form__button_disabled:hover{background-color:transparent}
-.form__button_hidden{display:none}
+.form__button_type_disabled{background-color:#fff;border-color:rgba(0,0,0,.2);color:rgba(0,0,0,.2);cursor:default;pointer-events:none;transition:none}.form__button_disabled_type:hover{background-color:transparent}
+.form__button_type_hidden{display:none}
 .form__input-error{color:red;font-size:12px;line-height:14px;margin:7px 0 0;min-height:30px;opacity:0}@media screen and (max-width:600px){.form__input-error{min-height:42px}}
 .form__input_type_error{border-bottom-color:red}
 .form__error_visible{opacity:1}
