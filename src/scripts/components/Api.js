@@ -35,7 +35,7 @@ export default class Api {
 // аватар ----- аватар ----- аватар ----- аватар ----- аватар ----- аватар
 
   // отправляет данные аватара
-  changeAvatar(link) {
+  setAvatar(link) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,

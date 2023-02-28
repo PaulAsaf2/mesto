@@ -52,15 +52,15 @@ Promise.all([api.getProfileData(), api.getInitialCards()])
     userInfo.setAvatar(userData);
   })
 
+// обработка данных профиля на странице
+const userInfo = new UserInfo(userData);
+
 // открытие попапа профиля
 editProfileButton.addEventListener('click', () => {
   profileInfo.setInputValues(userInfo.getUserInfo())
   profileValidationForm.deleteErrorElements()
   profileInfo.openPopup();
 })
-
-// обработка данных профиля на странице
-const userInfo = new UserInfo(userData);
 
 // обработка данных профиля через попап
 const profileInfo = new PopupWithForm({
@@ -72,27 +72,29 @@ const profileInfo = new PopupWithForm({
   }
 })
 
-
-// const handleProfileFormSubmit = (formData) => {
-//   api.setProfileData(formData)
-//     .then(userData => userInfo.setUserInfo(userData))
-//     .then(() => profileInfo.closePopup())
-//     .catch(err => console.log(err))
-//     .finally(() => profileInfo.renderLoading(false));
-// }
-
 // активация слушаетеля
 profileInfo.setEventListeners()
 
-// const profileInfo = new PopupWithForm({
-//   selector: popupSelector.popupProfile,
-//   handleFormSubmit: (formData) => {
-//     api.setProfileData(formData)
-//       .catch(err => console.log(err))
-//       .finally(() => profileInfo.renderLoading(false));
-//   }
-// })
+// аватар ----- аватар ----- аватар ----- аватар ----- аватар ----- аватар
 
+// отправляю данные аватарки на сервер
+const avatarInfo = new PopupWithForm({
+  selector: popupSelector.popupAvatar,
+  handleFormSubmit: (currentLink) => {
+    return api.setAvatar(currentLink)
+      .then(newLink => userInfo.setAvatar(newLink))
+      .catch(err => console.log(err));
+  }
+})
+
+// открытие попапа аватара
+editAvatarButton.addEventListener('click', () => {
+  avatarInfo.openPopup()
+  avatarValidationForm.deleteErrorElements()
+})
+
+// активация слушаетеля
+avatarInfo.setEventListeners()
 
 // профиль ----- профиль ----- профиль ----- профиль ----- профиль
 
