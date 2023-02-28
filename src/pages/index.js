@@ -35,28 +35,22 @@ profileValidationForm.enableValidation();
 cardValidationForm.enableValidation();
 avatarValidationForm.enableValidation();
 
-// профиль ----- профиль ----- профиль ----- профиль ----- профиль
 
-// помещаю данные профиля
-const userInfo = new UserInfo(userData);
+// получаю данные пользователя и карточек
+Promise.all([api.getProfileData(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+      // console.log( userData );
+      // console.log( cards );
+    let userId = userData._id
 
-// получаю с сервера данные профиля
-api.getProfileData()
-  .then((profileData) => {
-    userInfo.setUserInfo(profileData);
-    userInfo.setAvatar(profileData);
+    // установка данных пользователя на странице
+    userInfo.setUserInfo(userData);
+
+
+
+    // установка аватара на странице
+    userInfo.setAvatar(userData);
   })
-  .catch(err => console.log(err))
-
-// данные профиля отправляю на сервер
-const profileInfo = new PopupWithForm({
-  selector: popupSelector.popupProfile,
-  handleFormSubmit: (formData) => {
-    api.setProfileData(formData)
-      .catch(err => console.log(err))
-      .finally(() => profileInfo.renderLoading(false));
-  }
-})
 
 // открытие попапа профиля
 editProfileButton.addEventListener('click', () => {
@@ -65,106 +59,170 @@ editProfileButton.addEventListener('click', () => {
   profileInfo.openPopup();
 })
 
+// обработка данных профиля на странице
+const userInfo = new UserInfo(userData);
+
+// обработка данных профиля через попап
+const profileInfo = new PopupWithForm({
+  selector: popupSelector.popupProfile,
+  handleFormSubmit: (formData) => {
+    return api.setProfileData(formData)
+      .then(userData => userInfo.setUserInfo(userData))
+      .catch(err => console.log(err));
+  }
+})
+
+
+// const handleProfileFormSubmit = (formData) => {
+//   api.setProfileData(formData)
+//     .then(userData => userInfo.setUserInfo(userData))
+//     .then(() => profileInfo.closePopup())
+//     .catch(err => console.log(err))
+//     .finally(() => profileInfo.renderLoading(false));
+// }
+
 // активация слушаетеля
 profileInfo.setEventListeners()
 
+// const profileInfo = new PopupWithForm({
+//   selector: popupSelector.popupProfile,
+//   handleFormSubmit: (formData) => {
+//     api.setProfileData(formData)
+//       .catch(err => console.log(err))
+//       .finally(() => profileInfo.renderLoading(false));
+//   }
+// })
+
+
+// профиль ----- профиль ----- профиль ----- профиль ----- профиль
+
+
+
+// // получаю с сервера данные профиля
+// api.getProfileData()
+//   .then((profileData) => {
+//     userInfo.setUserInfo(profileData);
+//     userInfo.setAvatar(profileData);
+//   })
+//   .catch(err => console.log(err))
+
+// // данные профиля отправляю на сервер
+// const profileInfo = new PopupWithForm({
+//   selector: popupSelector.popupProfile,
+//   handleFormSubmit: (formData) => {
+//     api.setProfileData(formData)
+//       .catch(err => console.log(err))
+//       .finally(() => profileInfo.renderLoading(false));
+//   }
+// })
+
+// // открытие попапа профиля
+// editProfileButton.addEventListener('click', () => {
+//   profileInfo.setInputValues(userInfo.getUserInfo())
+//   profileValidationForm.deleteErrorElements()
+//   profileInfo.openPopup();
+// })
+
+// // активация слушаетеля
+// profileInfo.setEventListeners()
+
 // аватар ----- аватар ----- аватар ----- аватар ----- аватар ----- аватар
 
-// отправляю данные аватарки на сервер
-const avatarInfo = new PopupWithForm({
-  selector: popupSelector.popupAvatar,
-  handleFormSubmit: (formData) => {
-    api.changeAvatar(formData)
-      .catch(err => console.log(err))
-      .finally(() => avatarInfo.renderLoading(false));
-  }
-})
+// // отправляю данные аватарки на сервер
+// const avatarInfo = new PopupWithForm({
+//   selector: popupSelector.popupAvatar,
+//   handleFormSubmit: (formData) => {
+//     api.changeAvatar(formData)
+//       .catch(err => console.log(err))
+//       .finally(() => avatarInfo.renderLoading(false));
+//   }
+// })
 
 // открытие попапа аватара
-editAvatarButton.addEventListener('click', () => {
-  avatarInfo.openPopup()
-  avatarValidationForm.deleteErrorElements()
-})
+// editAvatarButton.addEventListener('click', () => {
+//   avatarInfo.openPopup()
+//   avatarValidationForm.deleteErrorElements()
+// })
 
 // активация слушаетеля
-avatarInfo.setEventListeners()
+// avatarInfo.setEventListeners()
 
 // карточки ----- карточки ----- карточки ----- карточки ----- карточки
 
-// отображение карточек
-const rendererCard = new Section({ renderer: (cardData) => {
-    const card = new Card(cardData, '#card-template', handleCardClick, openPopupDeleteCard, toggleLike);
-    const cardElement = card.generateCard();
-    rendererCard.addDefaultItem(cardElement);
-    }},
-  cardContainer
-)
+// // отображение карточек
+// const rendererCard = new Section({ renderer: (cardData) => {
+//     const card = new Card(cardData, '#card-template', handleCardClick, openPopupDeleteCard, toggleLike);
+//     const cardElement = card.generateCard();
+//     rendererCard.addDefaultItem(cardElement);
+//     }},
+//   cardContainer
+// )
 
-// получение массива карточек
-api.getInitialCards()
-  .then((initialCards) => {
-    rendererCard.rendererItems(initialCards)
-  })
-  .catch(err => console.log(err))
+// // получение массива карточек
+// api.getInitialCards()
+//   .then((initialCards) => {
+//     rendererCard.rendererItems(initialCards)
+//   })
+//   .catch(err => console.log(err))
 
-// создание новой карточки
-const newCard = new PopupWithForm({
-  selector: popupSelector.popupCard,
-  handleFormSubmit: (formData) => {
-    api.createCard(formData)
-      .catch(err => console.log(err))
-      .finally(() => newCard.renderLoading(false))
-  }
-});
+// // создание новой карточки
+// const newCard = new PopupWithForm({
+//   selector: popupSelector.popupCard,
+//   handleFormSubmit: (formData) => {
+//     api.createCard(formData)
+//       .catch(err => console.log(err))
+//       .finally(() => newCard.renderLoading(false))
+//   }
+// });
 
-// открытие попапа
-popupAddCardButton.addEventListener('click', () => {
-  cardValidationForm.deleteErrorElements()
-  newCard.openPopup();
-})
+// // открытие попапа
+// popupAddCardButton.addEventListener('click', () => {
+//   cardValidationForm.deleteErrorElements()
+//   newCard.openPopup();
+// })
 
-// активация слушаетеля
-newCard.setEventListeners()
+// // активация слушаетеля
+// newCard.setEventListeners()
 
-// переключение лайка
-const toggleLike = (cardId, checkLike) => {
-  if (!checkLike) {
-    api.putLike(cardId)
-      .catch(err => console.log(err))
-  } else {
-    api.deleteLike(cardId)
-      .catch(err => console.log(err))
-  }
-}
+// // переключение лайка
+// const toggleLike = (cardId, checkLike) => {
+//   if (!checkLike) {
+//     api.putLike(cardId)
+//       .catch(err => console.log(err))
+//   } else {
+//     api.deleteLike(cardId)
+//       .catch(err => console.log(err))
+//   }
+// }
 
-// удаление карточки 
-const confirmationPopup = new PopupWithConfirmation({
-  popupDelete: popupDeleteCardButton,
-  handleFormSubmit: (id) => { api.deleteCard(id) }
-  },
-  popupSelector.popupCardDelete, 
-)
+// // удаление карточки 
+// const confirmationPopup = new PopupWithConfirmation({
+//   popupDelete: popupDeleteCardButton,
+//   handleFormSubmit: (id) => { api.deleteCard(id) }
+//   },
+//   popupSelector.popupCardDelete, 
+// )
 
-// открытие попапа
-const openPopupDeleteCard = (id) => {
-  confirmationPopup.getId(id)
-  confirmationPopup.openPopup()
+// // открытие попапа
+// const openPopupDeleteCard = (id) => {
+//   confirmationPopup.getId(id)
+//   confirmationPopup.openPopup()
   
-}
+// }
 
-// активация слушаетеля
-confirmationPopup.setEventListeners()
+// // активация слушаетеля
+// confirmationPopup.setEventListeners()
 
-// открытие изображения
-const openImage = new PopupWithImage({
-  popupImageCaption, popupImageOpened
-  }, 
-  popupSelector.popupImage
-)
+// // открытие изображения
+// const openImage = new PopupWithImage({
+//   popupImageCaption, popupImageOpened
+//   }, 
+//   popupSelector.popupImage
+// )
 
-const handleCardClick = (title, link) => {
-  openImage.openPopup(title, link)
-}
+// const handleCardClick = (title, link) => {
+//   openImage.openPopup(title, link)
+// }
 
-openImage.setEventListeners()
+// openImage.setEventListeners()
 

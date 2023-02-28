@@ -12,14 +12,14 @@ export default class UserInfo {
     }
   }
 
-  setUserInfo(formData) {
-    const { name, about } = formData;
+  setUserInfo(userData) {
+    const { name, about } = userData;
     this._name.textContent = name;
     this._about.textContent = about;
   }
 
-  setAvatar(formData) {
-    const { avatar } = formData;
+  setAvatar(userData) {
+    const { avatar } = userData;
     this._avatar.src = avatar
   }
 

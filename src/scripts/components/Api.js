@@ -4,6 +4,9 @@ export default class Api {
     this._headers = headers;
   }
 
+  // профиль ----- профиль ----- профиль ----- профиль ----- профиль
+
+  // получает данные профиля
   getProfileData() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
@@ -15,6 +18,7 @@ export default class Api {
     })
   }
 
+  // отправляет данные профиля
   setProfileData(data) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
@@ -28,6 +32,9 @@ export default class Api {
     })
   }
 
+// аватар ----- аватар ----- аватар ----- аватар ----- аватар ----- аватар
+
+  // отправляет данные аватара
   changeAvatar(link) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
@@ -41,6 +48,9 @@ export default class Api {
     })
   }
   
+// карточки ----- карточки ----- карточки ----- карточки ----- карточки
+
+  // получает данные карточек
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
@@ -52,6 +62,7 @@ export default class Api {
     })
   }
 
+  // отправляет данные для создания карточки
   createCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
@@ -65,6 +76,7 @@ export default class Api {
     })
   }
 
+  // отправляет данные на удаление карточки
   deleteCard(data) {
     return fetch(`${this._baseUrl}/cards/${data}`, {
       method: 'DELETE',
@@ -77,6 +89,9 @@ export default class Api {
     })
   }
 
+// лайк ----- лайк ----- лайк ----- лайк ----- лайк ----- лайк ----- лайк
+
+  // отправляет данные пользователя поставившего лайк
   putLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
@@ -88,7 +103,8 @@ export default class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
     })
   }
-
+  
+  // отправляет данные на удаление пользователя поставившего лайк
   deleteLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
