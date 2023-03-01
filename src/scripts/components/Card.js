@@ -12,7 +12,6 @@ export default class Card {
     this.openPopupDeleteCard = openPopupDeleteCard;
     this._toggleLike = toggleLike;
     this._userId = userId;
-    console.log( this._userId );
   }
 
   _getTemplate() {
@@ -29,13 +28,14 @@ export default class Card {
     this._trashButton = this._element.querySelector('.card__trash');
     this._likeButton = this._element.querySelector('.card__like');
     this._likeCount = this._element.querySelector('.card__like-count');
+    this.isLiked = this._likes.some(item => item._id == this._userId);
 
     this._element.querySelector('.card__text').textContent = this._title;      
     this._cardImage.src = this._link;
     this._cardImage.alt = this._title;
-    this._likeCount.textContent = this._likes.length;
+    this._likeCount.textContent = this._likes.length;    
 
-    if (this._checkLike()) {
+    if (this.isLiked) {
       this._likeButton.classList.add('card__like_active');
     }
 
@@ -55,22 +55,24 @@ export default class Card {
     })
 
     this._likeButton.addEventListener('click', () => {
-      this._toggleLikeButtonState();
+      this._toggleLikeState();
     })
   }
 
   _hideTrashButton() {
-    if (this._owner._id !== 'f539e0bd0f729ff44595d528') {
+    if (this._owner._id !== this._userId) {
       this._trashButton.remove();
     } 
   }
 
-  _toggleLikeButtonState() {
-    this._toggleLike(this._id, this._checkLike())
+  _toggleLikeState() {
+    this._likeButton.classList.toggle('card__like_active');
+    this._toggleLike(this._id, this.isLiked, this);
+    this.isLiked = !this.isLiked; 
   }
 
-  _checkLike() {
-    return this._likes.some(item => item._id == 'f539e0bd0f729ff44595d528')
+  updateLike(newLikesCount) {
+    this._likeCount.textContent = newLikesCount
   }
 
 }
