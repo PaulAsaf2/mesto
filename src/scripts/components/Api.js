@@ -4,6 +4,12 @@ export default class Api {
     this._headers = headers;
   }
 
+  _checkResponse(res) {
+    if (res.ok) { return res.json() }
+
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+
   // профиль ----- профиль ----- профиль ----- профиль ----- профиль
 
   // получает данные профиля
@@ -11,11 +17,7 @@ export default class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-    .then((res) => {
-      if (res.ok) { return res.json() };
-      
-    return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(this._checkResponse);
   }
 
   // отправляет данные профиля
@@ -25,11 +27,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify(data)
     })
-    .then((res) => {
-      if (res.ok) { return res.json() }
-    
-    return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(this._checkResponse);
   }
 
 // аватар ----- аватар ----- аватар ----- аватар ----- аватар ----- аватар
@@ -41,11 +39,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify(link)
     })
-    .then((res) => {
-      if (res.ok) { return res.json() }
-
-    return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(this._checkResponse);
   }
   
 // карточки ----- карточки ----- карточки ----- карточки ----- карточки
@@ -55,11 +49,7 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-    .then((res) => {
-      if (res.ok) { return res.json() }
-
-    return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(this._checkResponse);
   }
 
   // отправляет данные для создания карточки
@@ -69,11 +59,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify(data)
     })
-    .then((res) => {
-      if (res.ok) { return res.json() }
-
-    return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(this._checkResponse);
   }
 
   // отправляет данные на удаление карточки
@@ -82,11 +68,7 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers,
     })
-    .then((res) => {
-      if (res.ok) { return res.json() }
-
-    return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(this._checkResponse);
   }
 
 // лайк ----- лайк ----- лайк ----- лайк ----- лайк ----- лайк ----- лайк
@@ -97,11 +79,7 @@ export default class Api {
       method: 'PUT',
       headers: this._headers,
     })
-    .then((res) => {
-      if (res.ok) { return res.json() }
-
-    return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(this._checkResponse);
   }
   
   // отправляет данные на удаление пользователя поставившего лайк
@@ -110,11 +88,7 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers,
     })
-    .then((res) => {
-      if (res.ok) { return res.json() }
-
-    return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(this._checkResponse);
   }
 
 }

@@ -35,9 +35,7 @@ export default class Card {
     this._cardImage.alt = this._title;
     this._likeCount.textContent = this._likes.length;    
 
-    if (this.isLiked) {
-      this._likeButton.classList.add('card__like_active');
-    }
+    if (this.isLiked) {this._likeButton.classList.add('card__like_active')}
 
     this._hideTrashButton();
     this._setEventListeners();
@@ -60,9 +58,7 @@ export default class Card {
   }
 
   _hideTrashButton() {
-    if (this._owner._id !== this._userId) {
-      this._trashButton.remove();
-    } 
+    if (this._owner._id !== this._userId) {this._trashButton.remove()} 
   }
 
   _toggleLikeState() {

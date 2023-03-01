@@ -47,7 +47,7 @@ Promise.all([api.getProfileData(), api.getInitialCards()])
     userId = userData._id
     rendererCard.rendererItems(cards);
   })
-
+  .catch(err => console.log(err));
 
 
 // профиль ----- профиль ----- профиль ----- профиль ----- профиль
@@ -173,8 +173,10 @@ const toggleLike = (cardId, isLiked, card) => {
   if (isLiked) {
     api.deleteLike(cardId)
       .then((myLike) => {card.updateLike(myLike.likes.length)})
+      .catch(err => console.log(err));
   } else {
     api.putLike(cardId)
       .then((myLike) => {card.updateLike(myLike.likes.length)})
+      .catch(err => console.log(err));
   }
 }
