@@ -17,6 +17,7 @@ const profileForm = document.forms.edit_profile;
 const cardForm = document.forms.add_card;
 const avatarForm = document.forms.edit_avatar;
 
+let userId;
 
 const validationConfig = {
   formSelector: '.form',

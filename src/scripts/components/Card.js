@@ -1,15 +1,18 @@
 export default class Card {
   constructor({name, link, likes, _id, owner}, 
-              templateSelector, handleCardClick, openPopupDeleteCard, toggleLike) {
+              templateSelector, handleCardClick, 
+              openPopupDeleteCard, toggleLike, userId) {
     this._title = name;
     this._link = link;
     this._likes = likes;
     this._id = _id;
     this._owner = owner;
     this._templateSelector = templateSelector;
-    this._handleCardClick = handleCardClick;
-    this._openPopupDeleteCard = openPopupDeleteCard;
-    this._toggleLike = toggleLike
+    this.handleCardClick = handleCardClick;
+    this.openPopupDeleteCard = openPopupDeleteCard;
+    this._toggleLike = toggleLike;
+    this._userId = userId;
+    console.log( this._userId );
   }
 
   _getTemplate() {
@@ -44,11 +47,11 @@ export default class Card {
 
   _setEventListeners() {
     this._cardImage.addEventListener('click', () => {
-      this._handleCardClick(this._title, this._link);
+      this.handleCardClick(this._title, this._link);
     })
 
     this._trashButton.addEventListener('click', () => {
-      this._openPopupDeleteCard(this._id)
+      this.openPopupDeleteCard(this._id, this._element)
     })
 
     this._likeButton.addEventListener('click', () => {
@@ -58,13 +61,8 @@ export default class Card {
 
   _hideTrashButton() {
     if (this._owner._id !== 'f539e0bd0f729ff44595d528') {
-      this._trashButton.classList.add('card__trash_type_hide');
+      this._trashButton.remove();
     } 
-  }
-
-  removeCard() {
-    this._element.remove();
-    this._element = null;
   }
 
   _toggleLikeButtonState() {

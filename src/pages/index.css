@@ -30,7 +30,6 @@
 /* card---card---card---card---card---card---card---card---card---card---card */
 @import url(../blocks/card/card.css);
   @import url(../blocks/card/__trash/card__trash.css);
-    @import url(../blocks/card/__trash/_type/card__trash_type_hide.css);
   @import url(../blocks/card/__image/card__image.css);
   @import url(../blocks/card/__title/card__title.css);
     @import url(../blocks/card/__text/card__text.css);

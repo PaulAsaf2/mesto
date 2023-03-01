@@ -35,22 +35,22 @@ profileValidationForm.enableValidation();
 cardValidationForm.enableValidation();
 avatarValidationForm.enableValidation();
 
+// профиль и карточки ----- профиль и карточки ----- профиль и карточки
 
-// получаю данные пользователя и карточек
+let userId;
+
+// получаю и устанавливаю данные пользователя и карточек
 Promise.all([api.getProfileData(), api.getInitialCards()])
   .then(([userData, cards]) => {
-      // console.log( userData );
-      // console.log( cards );
-    let userId = userData._id
-
-    // установка данных пользователя на странице
     userInfo.setUserInfo(userData);
-
-
-
-    // установка аватара на странице
     userInfo.setAvatar(userData);
+    userId = userData._id
+    rendererCard.rendererItems(cards);
   })
+
+
+
+// профиль ----- профиль ----- профиль ----- профиль ----- профиль
 
 // обработка данных профиля на странице
 const userInfo = new UserInfo(userData);
@@ -96,9 +96,85 @@ editAvatarButton.addEventListener('click', () => {
 // активация слушаетеля
 avatarInfo.setEventListeners()
 
+// карточки ----- карточки ----- карточки ----- карточки ----- карточки
+
+// отрисовка изначальных карточек
+const rendererCard = new Section({ renderer: (cardData) => {
+    const card = new Card(cardData, '#card-template', handleCardClick, openPopupDeleteCard, toggleLike, userId);
+    const cardElement = card.generateCard();
+    rendererCard.addDefaultItem(cardElement);
+    }},
+  cardContainer
+)
+
+// создание новой карточки
+const newCard = new PopupWithForm({
+  selector: popupSelector.popupCard,
+  handleFormSubmit: (formData) => {
+    return api.createCard(formData)
+      .then((newCard) => {
+        const card = new Card(newCard, '#card-template', handleCardClick, openPopupDeleteCard, toggleLike, userId);
+        const cardElement = card.generateCard();
+        rendererCard.addUserItem(cardElement);
+      })
+      .catch(err => console.log(err))
+  }
+});
+
+// активация слушаетеля созданной карточки
+newCard.setEventListeners()
+
+// открытие попапа создания карточки
+popupAddCardButton.addEventListener('click', () => {
+  cardValidationForm.deleteErrorElements()
+  newCard.openPopup();
+})
+
+// удаление карточки 
+const confirmationPopup = new PopupWithConfirmation({
+  popupDelete: popupDeleteCardButton,
+  handleFormSubmit: (id) => {
+    return api.deleteCard(id)
+    .catch(err => console.log(err));
+  }
+},
+popupSelector.popupCardDelete, 
+)
+
+// открытие попапа удаления карточки, передача данных карточки
+const openPopupDeleteCard = (id, card) => {
+  confirmationPopup.getDataForDeleteCard(id, card);
+  confirmationPopup.openPopup();
+}
+
+// активация слушаетеля удаления карточки
+confirmationPopup.setEventListeners()
+
+// открытие изображения
+const openImage = new PopupWithImage({
+  popupImageCaption, popupImageOpened
+  }, 
+  popupSelector.popupImage
+)
+
+const handleCardClick = (title, link) => {
+  openImage.openPopup(title, link)
+}
+
+openImage.setEventListeners()
+
+// переключение лайка
+const toggleLike = (cardId, checkLike) => {
+  if (!checkLike) {
+    api.putLike(cardId)
+      .catch(err => console.log(err))
+  } else {
+    api.deleteLike(cardId)
+      .catch(err => console.log(err))
+  }
+}
+
 // профиль ----- профиль ----- профиль ----- профиль ----- профиль
-
-
 
 // // получаю с сервера данные профиля
 // api.getProfileData()
