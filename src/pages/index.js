@@ -98,32 +98,26 @@ avatarInfo.setEventListeners()
 
 // карточки ----- карточки ----- карточки ----- карточки ----- карточки
 
+// генерация карточки
+const createCard = (newCard) => {
+  const card = new Card(newCard, '#card-template', handleCardClick, openPopupDeleteCard, toggleLike, userId);
+  return card.generateCard();
+}
+
 // отрисовка ИЗНАЧАЛЬНЫХ карточек
-const rendererCard = new Section({ renderer: (cardData) => {
-    const card = new Card(cardData, '#card-template', handleCardClick, openPopupDeleteCard, toggleLike, userId);
-    const cardElement = card.generateCard();
-    rendererCard.addDefaultItem(cardElement);
-    }},
-  cardContainer
-)
+const rendererCard = new Section({renderer: cardData => renderInitialsCards(cardData)},
+                                  cardContainer);
 
+const renderInitialsCards = (cardData) => {
+  const cardElement = createCard(cardData);
+  rendererCard.addDefaultItem(cardElement);
+}
 
-// создание НОВОЙ карточки
-const newCard = new PopupWithForm({
-  selector: popupSelector.popupCard,
-  handleFormSubmit: (formData) => {
-    return api.createCard(formData)
-      .then((newCard) => {
-        const card = new Card(newCard, '#card-template', handleCardClick, openPopupDeleteCard, toggleLike, userId);
-        const cardElement = card.generateCard();
-        rendererCard.addUserItem(cardElement);
-      })
-      .catch(err => console.log(err))
-  }
-});
-
-// активация слушаетеля созданной карточки
-newCard.setEventListeners()
+// отрисовка ПОЛЬЗОВАТЕЛЬСКОЙ карточки
+const renderUserCard = (newCard) => {
+  const cardElement = createCard(newCard);
+  rendererCard.addUserItem(cardElement);
+}
 
 // открытие попапа создания карточки
 popupAddCardButton.addEventListener('click', () => {
@@ -131,6 +125,23 @@ popupAddCardButton.addEventListener('click', () => {
   newCard.openPopup();
 })
 
+// создание новой карточки через попап
+const newCard = new PopupWithForm({
+  selector: popupSelector.popupCard,
+  handleFormSubmit: (formData) => {
+    return api.createCard(formData)
+      .then(newCard => renderUserCard(newCard))
+      .catch(err => console.log(err))}
+});
+
+// активация слушателя созданной карточки
+newCard.setEventListeners()
+
+// открытие попапа удаления карточки, передача данных карточки
+const openPopupDeleteCard = (id, card) => {
+  confirmationPopup.getDataForDeleteCard(id, card);
+  confirmationPopup.openPopup();
+}
 
 // УДАЛЕНИЕ карточки 
 const confirmationPopup = new PopupWithConfirmation({
@@ -142,12 +153,6 @@ const confirmationPopup = new PopupWithConfirmation({
 },
 popupSelector.popupCardDelete, 
 )
-
-// открытие попапа удаления карточки, передача данных карточки
-const openPopupDeleteCard = (id, card) => {
-  confirmationPopup.getDataForDeleteCard(id, card);
-  confirmationPopup.openPopup();
-}
 
 // активация слушаетеля удаления карточки
 confirmationPopup.setEventListeners()
@@ -169,14 +174,16 @@ openImage.setEventListeners()
 // лайк ----- лайк ----- лайк ----- лайк ----- лайк ----- лайк ----- лайк
 
 // переключение лайка
-const toggleLike = (cardId, isLiked, card) => {
+const toggleLike = (cardId, isLiked, likeButton, card) => {
   if (isLiked) {
     api.deleteLike(cardId)
-      .then((myLike) => {card.updateLike(myLike.likes.length)})
+      .then(myLike => card.updateLike(myLike.likes.length))
+      .then(() => likeButton.classList.remove('card__like_active'))
       .catch(err => console.log(err));
   } else {
     api.putLike(cardId)
-      .then((myLike) => {card.updateLike(myLike.likes.length)})
+      .then(myLike => card.updateLike(myLike.likes.length))
+      .then(() => likeButton.classList.add('card__like_active'))
       .catch(err => console.log(err));
   }
 }

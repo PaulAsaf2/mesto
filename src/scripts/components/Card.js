@@ -62,9 +62,9 @@ export default class Card {
   }
 
   _toggleLikeState() {
-    this._likeButton.classList.toggle('card__like_active');
-    this._toggleLike(this._id, this.isLiked, this);
-    this.isLiked = !this.isLiked; 
+    // this._likeButton.classList.toggle('card__like_active');
+    this._toggleLike(this._id, this.isLiked, this._likeButton, this);
+    this.isLiked = !this.isLiked;
   }
 
   updateLike(newLikesCount) {
