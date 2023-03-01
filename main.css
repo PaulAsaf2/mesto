@@ -15,7 +15,6 @@
 .images{display:grid;gap:21px 17px;grid-template-columns:repeat(3,1fr);margin-top:50px}@media screen and (max-width:930px){.images{grid-template-columns:repeat(2,1fr)}}@media screen and (max-width:600px){.images{grid-template-columns:1fr;margin-top:36px}}
 .card{background-color:#fff;border-radius:10px;min-height:360px;overflow:hidden;position:relative}
 .card__trash{background:url(e3c42771bff3aaa52f76.svg);background-position:50%;background-repeat:no-repeat;border:0;cursor:pointer;height:19px;position:absolute;right:20px;top:20px;transition:.4s ease;width:18px}.card__trash:hover{opacity:50%}
-.card__trash_type_hide{opacity:0}
 .card__image{cursor:pointer;display:block;height:280px;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center;width:100%}
 .card__title{align-items:center;display:flex;justify-content:space-between;margin:25px auto 0;width:246px}@media screen and (max-width:930px){.card__title{width:88%}}
 .card__text{font-size:24px;font-weight:900;line-height:29px;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -38,8 +37,6 @@
 .form__input-container{border:0;display:flex;flex-direction:column;gap:8px;margin:46px 0 10px;padding:0}@media screen and (max-width:600px){.form__input-container{gap:5px;margin-bottom:15px;margin-top:45px}}
 .form__item{border:0;border-bottom:1px solid rgba(0,0,0,.2);box-sizing:border-box;color:#000;font-size:14px;font-weight:400;line-height:17px;margin-left:0;padding-bottom:10px;width:100%}
 .form__button{background-color:#000;color:#fff;cursor:pointer;font-size:18px;height:50px;line-height:22px;transition:.4s ease;width:100%}.form__button:hover{background-color:rgba(0,0,0,.8)}@media screen and (max-width:600px){.form__button{font-size:14px;line-height:17px}}
-.form__loading{background-color:#000;color:#fff;cursor:pointer;display:none;font-size:18px;height:50px;line-height:22px;transition:.4s ease;width:100%}.form__loading:hover{background-color:rgba(0,0,0,.8)}@media screen and (max-width:600px){.form__loading{font-size:14px;line-height:17px}}
-.form__loading_visible{display:block}
 .form__button_type_disabled{background-color:#fff;border-color:rgba(0,0,0,.2);color:rgba(0,0,0,.2);cursor:default;pointer-events:none;transition:none}.form__button_disabled_type:hover{background-color:transparent}
 .form__button_type_hidden{display:none}
 .form__input-error{color:red;font-size:12px;line-height:14px;margin:7px 0 0;min-height:30px;opacity:0}@media screen and (max-width:600px){.form__input-error{min-height:42px}}
