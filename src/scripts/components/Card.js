@@ -10,7 +10,7 @@ export default class Card {
     this._templateSelector = templateSelector;
     this.handleCardClick = handleCardClick;
     this.openPopupDeleteCard = openPopupDeleteCard;
-    this._toggleLike = toggleLike;
+    this.toggleLike = toggleLike;
     this._userId = userId;
   }
 
@@ -62,13 +62,14 @@ export default class Card {
   }
 
   _toggleLikeState() {
-    // this._likeButton.classList.toggle('card__like_active');
-    this._toggleLike(this._id, this.isLiked, this._likeButton, this);
-    this.isLiked = !this.isLiked;
-  }
+      this.toggleLike(this._id, this.isLiked)
+        .then(myLike => this._updateLike(myLike.likes.length))
+        .then(() => this.isLiked = !this.isLiked)
+    }   
 
-  updateLike(newLikesCount) {
-    this._likeCount.textContent = newLikesCount
+  _updateLike(newLikesCount) {
+    this._likeCount.textContent = newLikesCount;
+    this._likeButton.classList.toggle('card__like_active');
   }
 
 }

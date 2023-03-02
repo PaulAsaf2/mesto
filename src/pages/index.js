@@ -42,6 +42,7 @@ let userId;
 // получаю и устанавливаю данные пользователя и карточек
 Promise.all([api.getProfileData(), api.getInitialCards()])
   .then(([userData, cards]) => {
+    console.log( cards );
     userInfo.setUserInfo(userData);
     userInfo.setAvatar(userData);
     userId = userData._id
@@ -173,17 +174,13 @@ openImage.setEventListeners()
 
 // лайк ----- лайк ----- лайк ----- лайк ----- лайк ----- лайк ----- лайк
 
-// переключение лайка
-const toggleLike = (cardId, isLiked, likeButton, card) => {
+// отправка данных для обновления лайка
+const toggleLike = (cardId, isLiked) => {
   if (isLiked) {
-    api.deleteLike(cardId)
-      .then(myLike => card.updateLike(myLike.likes.length))
-      .then(() => likeButton.classList.remove('card__like_active'))
-      .catch(err => console.log(err));
+    return api.deleteLike(cardId)
+            .catch(err => console.log(err));
   } else {
-    api.putLike(cardId)
-      .then(myLike => card.updateLike(myLike.likes.length))
-      .then(() => likeButton.classList.add('card__like_active'))
-      .catch(err => console.log(err));
+    return api.setLike(cardId)
+            .catch(err => console.log(err));
   }
 }

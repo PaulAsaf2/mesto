@@ -74,7 +74,7 @@ export default class Api {
 // лайк ----- лайк ----- лайк ----- лайк ----- лайк ----- лайк ----- лайк
 
   // отправляет данные пользователя поставившего лайк
-  putLike(cardId) {
+  setLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this._headers,
