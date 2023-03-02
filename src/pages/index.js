@@ -42,7 +42,6 @@ let userId;
 // получаю и устанавливаю данные пользователя и карточек
 Promise.all([api.getProfileData(), api.getInitialCards()])
   .then(([userData, cards]) => {
-    console.log( cards );
     userInfo.setUserInfo(userData);
     userInfo.setAvatar(userData);
     userId = userData._id
