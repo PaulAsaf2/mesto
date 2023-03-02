@@ -31,7 +31,7 @@ const userData = {
   name: nameProfile,
   about: jobProfile,
   avatar: avatarProfile,
-}
+};
 
 const popupSelector = {
   popupImage: '.popup_type_image',
@@ -39,7 +39,7 @@ const popupSelector = {
   popupCardDelete: '.popup_type_delete-card',
   popupProfile: '.popup_type_profile',
   popupAvatar: '.popup_type_avatar',
-}
+};
 
 export { 
   profile, popupAddCardButton, popupDeleteCardButton,
