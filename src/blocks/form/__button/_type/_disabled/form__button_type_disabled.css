@@ -1,12 +1,13 @@
 .form__button_type_disabled {
   background-color: white;
+  outline: 2px solid lightgray;
   color: rgba(0, 0, 0, 0.2);
   cursor: default;
-  border-color: rgba(0, 0, 0, 0.2);
   transition: none;
   pointer-events: none;
+  border-radius: 2px;
 }
 
-.form__button_disabled_type:hover {
+.form__button_type_disabled:hover {
   background-color: rgba(0, 0, 0, 0.0);
 }

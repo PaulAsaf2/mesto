@@ -21,7 +21,7 @@ const validationConfig = {
   formSelector: '.form',
   inputSelector: '.form__item',
   submitButtonSelector: '.form__button',
-  inactiveButtonClass: 'form__button_disabled',
+  inactiveButtonClass: 'form__button_type_disabled',
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__error_visible',
   errorText: '.form__input-error',

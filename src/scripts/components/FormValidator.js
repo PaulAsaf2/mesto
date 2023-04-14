@@ -19,10 +19,10 @@ export default class FormValidator {
   }
 
   deleteErrorElements() {
-    this._inputList.forEach((input) => {
+    this._inputList.forEach((item) => {
       this.deleteTextError();
-      this.deleteLineError()
-      this.toggleButtonState()
+      this.deleteLineError();
+      this.toggleButtonState();
     })
   }
        
